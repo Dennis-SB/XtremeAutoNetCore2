@@ -1,11 +1,18 @@
-create database XtremeAutoNetCore;
+-- =============================================
+create database XtremeAutoNetCore; 
+-- =============================================
+
 use XtremeAutoNetCore;
+
+-- =============================================
 create table Rol
 (RolID int not null identity,
 Nombre nvarchar (30) not null,
 primary key(RolID)
 )
+-- =============================================
 
+-- =============================================  
 create table Rueda
 (RuedaID int not null identity,
 Nombre nvarchar (30) not null,
@@ -13,14 +20,18 @@ Imagen image not null,
 Precio decimal (18,2) not null,
 primary key(RuedaID)
 )
+-- =============================================
 
+-- =============================================  
 create table Color
 (ColorID int not null identity,
 Nombre nvarchar (30) not null,
 Imagen image not null,
 primary key(ColorID)
 )
+-- =============================================
 
+-- =============================================  
 create table Seguro
 (SeguroID int not null identity,
 Nombre nvarchar (30) not null,
@@ -28,6 +39,9 @@ Plazo int not null,
 Precio decimal (18,2) not null,
 primary key(SeguroID)
 )
+-- =============================================
+
+-- =============================================    
 create table CarroModelo
 (CarroModeloID int not null identity,
 Disponible bit not null,
@@ -40,7 +54,9 @@ Imagen image not null,
 Cantidad int not null,
 primary key(CarroModeloID)
 )
+-- =============================================
 
+-- =============================================  
 create table CarroVendido
 (CarroVendidoID int not null identity,
 RuedaID int not null,
@@ -54,7 +70,9 @@ foreign key(ColorID) references Color(ColorID),
 foreign key(CarroModeloID) references CarroModelo(CarroModeloID),
 foreign key(SeguroID) references Seguro(SeguroID)
 )
+-- =============================================
 
+-- =============================================  
 create table Usuario
 (UsuarioID int not null identity,
 Nombre nvarchar(50) not null,
@@ -73,7 +91,9 @@ LockoutEndDateUtc datetime not null,
 primary key(UsuarioID),
 foreign key(RolID) references Rol(RolID)
 )
+-- =============================================
 
+-- =============================================  
 create table Venta
 (VentaID int not null identity,
 UsuarioID int not null,
@@ -87,7 +107,9 @@ primary key(VentaID),
 foreign key(UsuarioID) references Usuario(UsuarioID),
 foreign key(CarroVendidoID) references CarroVendido(CarroVendidoID)
 )
+-- =============================================
 
+-- =============================================  
 create table Tarjeta
 (TarjetaID int not null identity,
 UsuarioID int not null,
@@ -98,7 +120,9 @@ FechaVencimiento datetime not null,
 primary key(TarjetaID),
 foreign key(UsuarioID) references Usuario(UsuarioID)
 )
+-- =============================================
 
+-- =============================================  
 create table Transaccion
 (TransaccionID int not null identity,
 VentaID int not null,
@@ -112,3 +136,4 @@ primary key(TransaccionID),
 foreign key(TarjetaID) references Tarjeta(TarjetaID),
 foreign key(VentaID) references Venta(VentaID)
 )
+-- =============================================
