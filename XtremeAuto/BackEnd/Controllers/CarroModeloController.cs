@@ -14,7 +14,6 @@ namespace BackEnd.Controllers
     [ApiController]
     public class CarroModeloController : ControllerBase
     {
-
         private ICarroModeloDAL carroModeloDAL;
         private ImagenesUploader ImagenesUploader;
 
@@ -31,11 +30,8 @@ namespace BackEnd.Controllers
                 Precio = carroModelo.Precio,
                 Imagen = carroModelo.Imagen,
                 Cantidad = carroModelo.Cantidad
-
             };
         }
-
-
 
         private CarroModelo Convertir(CarroModeloModel carroModelo)
         {
@@ -53,33 +49,24 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public CarroModeloController()
         {
             ImagenesUploader = new ImagenesUploader();
             carroModeloDAL = new CarroModeloDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<CarroModeloController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<CarroModelo> carroModelos = await carroModeloDAL.GetAll();
             List<CarroModeloModel> models = new List<CarroModeloModel>();
-
             foreach (var carroModelo in carroModelos)
             {
-
                 models.Add(Convertir(carroModelo));
-
             }
 
             return new JsonResult(models);
@@ -90,31 +77,22 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             CarroModelo carroModelo = await carroModeloDAL.Get(id);
-
-
             return new JsonResult(Convertir(carroModelo));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CarroModeloController>
         [HttpPost]
         public JsonResult Post([FromForm] CarroModeloModel carroModelo)
         {
-
             //carroModelo.Imagen = ImagenesUploader.uploadImage(carroModelo.FormFile);
             carroModeloDAL.Add(Convertir(carroModelo));
             return new JsonResult(carroModelo);
         }
-
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CarroModeloController>/5
         [HttpPut]
         public JsonResult Put([FromBody] CarroModeloModel carroModelo)
@@ -123,7 +101,6 @@ namespace BackEnd.Controllers
             return new JsonResult(carroModelo);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<CarroModeloController>/5
@@ -134,12 +111,8 @@ namespace BackEnd.Controllers
             {
                 CarroModeloId = id
             };
-
             carroModeloDAL.Remove(carroModelo);
-
         }
-
         #endregion
-
     }
 }
