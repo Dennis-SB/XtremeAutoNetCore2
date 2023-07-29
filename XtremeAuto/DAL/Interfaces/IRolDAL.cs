@@ -9,5 +9,6 @@ namespace DAL.Interfaces
 {
     public interface IRolDAL: IDALGenerico<Rol>
     {
+
     }
 }
