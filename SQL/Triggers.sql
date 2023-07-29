@@ -25,7 +25,7 @@ BEGIN
 	IF @SaldoAbonado IS NULL
         SET @SaldoAbonado = 0;
     SET @SaldoPendiente = (Select Total from venta where VentaID = @VentaID) - @SaldoAbonado;
-    UPDATE Venta SET SaldoAbonado = @SaldoAbonado, SaldoPendiente= @SaldoPendiente where VentaID = @VentaID;
+    UPDATE Venta SET SaldoAbonado = @SaldoAbonado, SaldoPendiente= @SaldoPendiente where VentaID =Â @VentaID;
 END;
 
 CREATE TRIGGER trg_CrearTransacciones
@@ -74,5 +74,5 @@ BEGIN
         EXEC sp_AddTransaccion @VentaID, @TarjetaID, @FechaTransaccion, @FechaCorte, @InteresesMorosidad, @Pagado, @Precio;
         
         SET @Counter += 1;
-    END;
+Â Â Â Â END;
 END;
