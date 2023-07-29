@@ -22,8 +22,5 @@ namespace DAL.Interfaces
         bool Update(TEntity entity);
         bool Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
-
-
-
     }
 }
