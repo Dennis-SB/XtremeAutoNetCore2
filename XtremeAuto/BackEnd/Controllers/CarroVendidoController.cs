@@ -12,7 +12,6 @@ namespace BackEnd.Controllers
     [ApiController]
     public class CarroVendidoController : ControllerBase
     {
-
         private ICarroVendidoDAL carroVendidoDAL;
 
         private CarroVendidoModel Convertir(CarroVendido carroVendido)
@@ -25,11 +24,8 @@ namespace BackEnd.Controllers
                 CarroModeloId = carroVendido.CarroModeloId,
                 SeguroId = carroVendido.SeguroId,
                 PrecioTotal = carroVendido.PrecioTotal
-
             };
         }
-
-
 
         private CarroVendido Convertir(CarroVendidoModel carroVendido)
         {
@@ -44,34 +40,24 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public CarroVendidoController()
         {
             carroVendidoDAL = new CarroVendidoDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<CarroVendidoController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<CarroVendido> carroVendidos = await carroVendidoDAL.GetAll();
             List<CarroVendidoModel> models = new List<CarroVendidoModel>();
-
             foreach (var carroVendido in carroVendidos)
             {
-
                 models.Add(Convertir(carroVendido));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -80,29 +66,21 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             CarroVendido carroVendido = await carroVendidoDAL.Get(id);
-
-
             return new JsonResult(Convertir(carroVendido));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CarroVendidoController>
         [HttpPost]
         public JsonResult Post([FromBody] CarroVendidoModel carroVendido)
         {
-
             carroVendidoDAL.Add(Convertir(carroVendido));
             return new JsonResult(carroVendido);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CarroVendidoController>/5
         [HttpPut]
         public JsonResult Put([FromBody] CarroVendidoModel carroVendido)
@@ -111,7 +89,6 @@ namespace BackEnd.Controllers
             return new JsonResult(carroVendido);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<CarroVendidoController>/5
@@ -122,12 +99,8 @@ namespace BackEnd.Controllers
             {
                 CarroVendidoId = id
             };
-
             carroVendidoDAL.Remove(carroVendido);
-
         }
-
         #endregion
-
     }
 }
