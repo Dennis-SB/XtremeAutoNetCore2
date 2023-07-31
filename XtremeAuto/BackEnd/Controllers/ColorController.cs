@@ -13,10 +13,8 @@ namespace BackEnd.Controllers
     [ApiController]
     public class ColorController : ControllerBase
     {
-
         private IColorDAL colorDAL;
         private ImagenesUploader ImagenesUploader;
-
         private ColorModel Convertir(Color color)
         {
             return new ColorModel
@@ -28,8 +26,6 @@ namespace BackEnd.Controllers
             };
         }
 
-
-
         private Color Convertir(ColorModel color)
         {
             return new Color
@@ -40,34 +36,25 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public ColorController()
         {
             colorDAL = new ColorDALImpl();
             ImagenesUploader = new ImagenesUploader();
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<ColorController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<Color> colors = await colorDAL.GetAll();
             List<ColorModel> models = new List<ColorModel>();
-
             foreach (var color in colors)
             {
-
                 models.Add(Convertir(color));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -76,30 +63,22 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             Color color = await colorDAL.Get(id);
-
-
             return new JsonResult(Convertir(color));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<ColorController>
         [HttpPost]
         public JsonResult Post([FromForm] ColorModel color)
         {
-
             color.Imagen = ImagenesUploader.uploadImage(color.FormFile);
             colorDAL.Add(Convertir(color));
             return new JsonResult(color);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<ColorController>/5
         [HttpPut]
         public JsonResult Put([FromForm] ColorModel color)
@@ -107,13 +86,11 @@ namespace BackEnd.Controllers
             if (color.FormFile != null)
             {
                 color.Imagen = ImagenesUploader.uploadImage(color.FormFile);
-
             }
             colorDAL.Update(Convertir(color));
             return new JsonResult(color);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<ColorController>/5
@@ -124,12 +101,8 @@ namespace BackEnd.Controllers
             {
                 ColorId = id
             };
-
             colorDAL.Remove(color);
-
         }
-
         #endregion
-
     }
 }
