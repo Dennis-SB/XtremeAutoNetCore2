@@ -12,9 +12,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class SeguroController : ControllerBase
     {
-
         private ISeguroDAL seguroDAL;
-
         private SeguroModel Convertir(Seguro seguro)
         {
             return new SeguroModel
@@ -23,11 +21,8 @@ namespace BackEnd.Controllers
                 Nombre = seguro.Nombre,
                 Precio = seguro.Precio,
                 Plazo = seguro.Plazo
-
             };
         }
-
-
 
         private Seguro Convertir(SeguroModel seguro)
         {
@@ -40,34 +35,24 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public SeguroController()
         {
             seguroDAL = new SeguroDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<SeguroController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<Seguro> seguros = await seguroDAL.GetAll();
             List<SeguroModel> models = new List<SeguroModel>();
-
             foreach (var seguro in seguros)
             {
-
                 models.Add(Convertir(seguro));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -76,29 +61,21 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             Seguro seguro = await seguroDAL.Get(id);
-
-
             return new JsonResult(Convertir(seguro));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<SeguroController>
         [HttpPost]
         public JsonResult Post([FromBody] SeguroModel seguro)
         {
-
             seguroDAL.Add(Convertir(seguro));
             return new JsonResult(seguro);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<SeguroController>/5
         [HttpPut]
         public JsonResult Put([FromBody] SeguroModel seguro)
@@ -107,7 +84,6 @@ namespace BackEnd.Controllers
             return new JsonResult(seguro);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<SeguroController>/5
@@ -118,12 +94,8 @@ namespace BackEnd.Controllers
             {
                 SeguroId = id
             };
-
             seguroDAL.Remove(seguro);
-
         }
-
         #endregion
-
     }
 }
