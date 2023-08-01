@@ -12,20 +12,15 @@ namespace BackEnd.Controllers
     [ApiController]
     public class RolController : ControllerBase
     {
-
         private IRolDAL rolDAL;
-
         private RolModel Convertir(Rol rol)
         {
             return new RolModel
             {
                 RolId = rol.RolId,
                 Nombre = rol.Nombre
-
             };
         }
-
-
 
         private Rol Convertir(RolModel rol)
         {
@@ -35,35 +30,25 @@ namespace BackEnd.Controllers
                 Nombre = rol.Nombre
             };
         }
-
-
+        
         #region Constructores
-
         public RolController()
         {
             rolDAL = new RolDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<RolController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<Rol> roles = await rolDAL.GetAll();
             List<RolModel> models = new List<RolModel>();
-
             foreach (var rol in roles)
             {
-
                 models.Add(Convertir(rol));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -72,29 +57,21 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             Rol rol = await rolDAL.Get(id);
-
-
             return new JsonResult(Convertir(rol));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<RolController>
         [HttpPost]
         public JsonResult Post([FromBody] RolModel rol)
         {
-
             rolDAL.Add(Convertir(rol));
             return new JsonResult(rol);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<RolController>/5
         [HttpPut]
         public JsonResult Put([FromBody] RolModel rol)
@@ -103,7 +80,6 @@ namespace BackEnd.Controllers
             return new JsonResult(rol);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<RolController>/5
@@ -114,12 +90,8 @@ namespace BackEnd.Controllers
             {
                 RolId = id
             };
-
             rolDAL.Remove(rol);
-
         }
-
         #endregion
-
     }
 }
