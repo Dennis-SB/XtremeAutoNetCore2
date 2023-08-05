@@ -37,12 +37,6 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-
-        /// <summary>
-        /// Obtener CarroModelo por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public CarroModeloViewModel GetByID(int id)
         {
             CarroModeloViewModel carroModelo = new CarroModeloViewModel();
@@ -66,8 +60,8 @@ namespace Front_End.Helpers
 
             HttpResponseMessage responseMessage = repository.PutResponse("api/carroModelo/", carromodelo);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            CarroModeloViewModel categoryAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
-            return categoryAPI;
+            CarroModeloViewModel carroModeloAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
+            return carroModeloAPI;
 
         }
 
@@ -99,13 +93,13 @@ namespace Front_End.Helpers
         /// <returns></returns>
         public CarroModeloViewModel Delete(int id)
         {
-            CarroModeloViewModel category = new CarroModeloViewModel();
+            CarroModeloViewModel carroModelo = new CarroModeloViewModel();
 
             HttpResponseMessage responseMessage = repository.DeleteResponse("api/carroModelo/" + id);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 
-            return category;
+            return carroModelo;
 
         }
 

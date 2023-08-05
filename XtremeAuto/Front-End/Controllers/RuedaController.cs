@@ -5,36 +5,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Front_End.Controllers
 {
-    public class CarroModeloController : Controller
+    public class RuedaController : Controller
     {
-        CarroModeloHelper carroModeloHelper;
+        private RuedaHelper ruedaHelper;
 
-
-
-        // GET: CarroModeloController
+        // GET: RuedaController
         public ActionResult Index()
         {
-            carroModeloHelper = new CarroModeloHelper();
-           
-            List<CarroModeloViewModel> list = carroModeloHelper.GetAll();
+            ruedaHelper = new RuedaHelper();
+
+            List<RuedaViewModel> list = ruedaHelper.GetAll();
 
             return View(list);
-
         }
 
-        // GET: CarroModeloController/Details/5
+        // GET: RuedaController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CarroModeloController/Create
+        // GET: RuedaController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CarroModeloController/Create
+        // POST: RuedaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -49,13 +46,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: CarroModeloController/Edit/5
+        // GET: RuedaController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CarroModeloController/Edit/5
+        // POST: RuedaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -70,13 +67,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: CarroModeloController/Delete/5
+        // GET: RuedaController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CarroModeloController/Delete/5
+        // POST: RuedaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

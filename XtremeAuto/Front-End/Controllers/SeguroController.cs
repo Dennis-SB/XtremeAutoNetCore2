@@ -5,36 +5,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Front_End.Controllers
 {
-    public class CarroModeloController : Controller
+    public class SeguroController : Controller
     {
-        CarroModeloHelper carroModeloHelper;
+        SeguroHelper seguroHelper;
 
-
-
-        // GET: CarroModeloController
+        // GET: SeguroController
         public ActionResult Index()
         {
-            carroModeloHelper = new CarroModeloHelper();
-           
-            List<CarroModeloViewModel> list = carroModeloHelper.GetAll();
+            seguroHelper = new SeguroHelper();
+
+            List<SeguroViewModel> list = seguroHelper.GetAll();
 
             return View(list);
-
         }
 
-        // GET: CarroModeloController/Details/5
+        // GET: SeguroController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CarroModeloController/Create
+        // GET: SeguroController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CarroModeloController/Create
+        // POST: SeguroController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -49,13 +46,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: CarroModeloController/Edit/5
+        // GET: SeguroController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CarroModeloController/Edit/5
+        // POST: SeguroController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -70,13 +67,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: CarroModeloController/Delete/5
+        // GET: SeguroController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CarroModeloController/Delete/5
+        // POST: SeguroController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
