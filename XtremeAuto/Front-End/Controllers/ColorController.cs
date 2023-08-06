@@ -5,33 +5,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Front_End.Controllers
 {
-    public class RuedaController : Controller
+    public class ColorController : Controller
     {
-       RuedaHelper ruedaHelper;
+        ColorHelper colorHelper;
 
-        // GET: RuedaController
+        // GET: colorController
         public ActionResult Index()
         {
-            ruedaHelper = new RuedaHelper();
+            colorHelper = new ColorHelper();
 
-            List<RuedaViewModel> list = ruedaHelper.GetAll();
+            List<ColorViewModel> list = colorHelper.GetAll();
 
             return View(list);
         }
 
-        // GET: RuedaController/Details/5
+        // GET: ColorController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: RuedaController/Create
+        // GET: ColorController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RuedaController/Create
+        // POST: ColorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -46,13 +46,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: RuedaController/Edit/5
+        // GET: ColorController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: RuedaController/Edit/5
+        // POST: ColorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -67,13 +67,13 @@ namespace Front_End.Controllers
             }
         }
 
-        // GET: RuedaController/Delete/5
+        // GET: ColorController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: RuedaController/Delete/5
+        // POST: ColorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
