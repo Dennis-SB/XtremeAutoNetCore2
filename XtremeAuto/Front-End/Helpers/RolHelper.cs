@@ -34,11 +34,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public RolViewModel GetByID(int id)
+        public RolViewModel GetByID(int RolId)
         {
             RolViewModel rol = new RolViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rol/" + id);
+            HttpResponseMessage responseMessage = repository.GetResponse("api/Rol/" + RolId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 
@@ -82,11 +82,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public RolViewModel Delete(int id)
+        public RolViewModel Delete(int RolId)
         {
             RolViewModel rol = new RolViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + id);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + RolId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

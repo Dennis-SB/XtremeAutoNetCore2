@@ -34,11 +34,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public RuedaViewModel GetByID(int id)
+        public RuedaViewModel GetByID(int RuedaId)
         {
             RuedaViewModel rueda = new RuedaViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rueda/" + id);
+            HttpResponseMessage responseMessage = repository.GetResponse("api/Rueda/" + RuedaId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             rueda = JsonConvert.DeserializeObject<RuedaViewModel>(content);
 
@@ -82,11 +82,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public RuedaViewModel Delete(int id)
+        public RuedaViewModel Delete(int RuedaId)
         {
             RuedaViewModel rueda = new RuedaViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + id);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + RuedaId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

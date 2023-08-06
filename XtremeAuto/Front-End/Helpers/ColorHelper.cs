@@ -32,11 +32,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public ColorViewModel GetByID(int id)
+        public ColorViewModel GetByID(int ColorId)
         {
             ColorViewModel color = new ColorViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Color/" + id);
+            HttpResponseMessage responseMessage = repository.GetResponse("api/Color/" + ColorId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             color = JsonConvert.DeserializeObject<ColorViewModel>(content);
 
@@ -80,11 +80,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public ColorViewModel Delete(int id)
+        public ColorViewModel Delete(int ColorId)
         {
             ColorViewModel color = new ColorViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/color/" + id);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("api/color/" + ColorId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

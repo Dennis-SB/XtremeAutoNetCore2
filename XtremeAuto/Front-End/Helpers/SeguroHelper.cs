@@ -34,11 +34,11 @@ namespace Front_End.Helpers
 
 
         #region GetByID
-        public SeguroViewModel GetByID(int id)
+        public SeguroViewModel GetByID(int SeguroId)
         {
             SeguroViewModel carroModelo = new SeguroViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/seguro/" + id);
+            HttpResponseMessage responseMessage = repository.GetResponse("api/seguro/" + SeguroId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             carroModelo = JsonConvert.DeserializeObject<SeguroViewModel>(content);
 
@@ -81,11 +81,11 @@ namespace Front_End.Helpers
 
         #region GetByID
 
-        public SeguroViewModel Delete(int id)
+        public SeguroViewModel Delete(int SeguroId)
         {
             SeguroViewModel seguro  = new SeguroViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/seguro/" + id);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("api/seguro/" + SeguroId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 
