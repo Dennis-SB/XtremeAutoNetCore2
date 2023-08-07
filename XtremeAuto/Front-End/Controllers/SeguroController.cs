@@ -20,9 +20,12 @@ namespace Front_End.Controllers
         }
 
         // GET: SeguroController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int SeguroId)
         {
-            return View();
+
+            seguroHelper = new SeguroHelper();
+            SeguroViewModel seguro = seguroHelper.GetByID(SeguroId);
+            return View(seguro);
         }
 
         // GET: SeguroController/Create
@@ -34,10 +37,14 @@ namespace Front_End.Controllers
         // POST: SeguroController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(SeguroViewModel seguro)
         {
             try
             {
+                seguroHelper = new SeguroHelper();
+                seguro = seguroHelper.Add(seguro);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,18 +54,22 @@ namespace Front_End.Controllers
         }
 
         // GET: SeguroController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int SeguroId)
         {
-            return View();
+            seguroHelper = new SeguroHelper();
+            SeguroViewModel seguro = seguroHelper.GetByID(SeguroId);
+            return View(seguro);
         }
 
         // POST: SeguroController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(SeguroViewModel seguro)
         {
             try
             {
+                seguroHelper = new SeguroHelper();
+                seguro = seguroHelper.Edit(seguro);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,18 +79,22 @@ namespace Front_End.Controllers
         }
 
         // GET: SeguroController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int SeguroId)
         {
-            return View();
+            seguroHelper = new SeguroHelper();
+            SeguroViewModel seguro = seguroHelper.GetByID(SeguroId);
+            return View(seguro);
         }
 
         // POST: SeguroController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(SeguroViewModel seguro)
         {
             try
             {
+                seguroHelper = new SeguroHelper();
+                seguroHelper.Delete(seguro.SeguroId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -88,4 +103,6 @@ namespace Front_End.Controllers
             }
         }
     }
+
+
 }

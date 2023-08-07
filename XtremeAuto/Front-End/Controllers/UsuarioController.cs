@@ -20,9 +20,12 @@ namespace Front_End.Controllers
         }
 
         // GET: UsuarioController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int UsuarioId)
         {
-            return View();
+
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel usuario = usuarioHelper.GetByID(UsuarioId);
+            return View(usuario);
         }
 
         // GET: UsuarioController/Create
@@ -34,10 +37,14 @@ namespace Front_End.Controllers
         // POST: UsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(UsuarioViewModel usuario)
         {
             try
             {
+                usuarioHelper = new UsuarioHelper();
+                usuario = usuarioHelper.Add(usuario);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,18 +54,23 @@ namespace Front_End.Controllers
         }
 
         // GET: UsuarioController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int UsuarioId)
         {
-            return View();
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel usuario = usuarioHelper.GetByID(UsuarioId);
+            return View(usuario);
         }
+
 
         // POST: UsuarioController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(UsuarioViewModel usuario)
         {
             try
             {
+                usuarioHelper = new UsuarioHelper();
+                usuario = usuarioHelper.Edit(usuario);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,18 +80,22 @@ namespace Front_End.Controllers
         }
 
         // GET: UsuarioController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int UsuarioId)
         {
-            return View();
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel seguro = usuarioHelper.GetByID(UsuarioId);
+            return View(seguro);
         }
 
         // POST: UsuarioController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(UsuarioViewModel usuario)
         {
             try
             {
+                usuarioHelper = new UsuarioHelper();
+                usuarioHelper.Delete(usuario.UsuarioId);
                 return RedirectToAction(nameof(Index));
             }
             catch

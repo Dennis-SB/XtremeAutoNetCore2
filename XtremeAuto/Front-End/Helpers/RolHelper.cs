@@ -20,7 +20,7 @@ namespace Front_End.Helpers
 
 
             List<RolViewModel> lista = new List<RolViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rol/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Rol/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -38,7 +38,7 @@ namespace Front_End.Helpers
         {
             RolViewModel rol = new RolViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rol/" + RolId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Rol/" + RolId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 
@@ -55,7 +55,7 @@ namespace Front_End.Helpers
         public RolViewModel Edit(RolViewModel rol)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/rol/", rol);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/Rol/", rol);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             RolViewModel rolAPI = JsonConvert.DeserializeObject<RolViewModel>(content);
             return rolAPI;
@@ -70,7 +70,7 @@ namespace Front_End.Helpers
         public RolViewModel Add(RolViewModel rol)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/rol/", rol);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/rol/", rol);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             RolViewModel rolAPI = JsonConvert.DeserializeObject<RolViewModel>(content);
             return rolAPI;
@@ -86,7 +86,7 @@ namespace Front_End.Helpers
         {
             RolViewModel rol = new RolViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + RolId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/rueda/" + RolId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

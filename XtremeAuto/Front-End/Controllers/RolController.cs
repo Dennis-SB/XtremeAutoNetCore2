@@ -19,9 +19,11 @@ namespace Front_End.Controllers
             return View(list);
         }
         // GET: RolController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int RolId)
         {
-            return View();
+            rolHelper = new RolHelper();
+            RolViewModel rol = rolHelper.GetByID(RolId);
+            return View(rol);
         }
 
         // GET: RolController/Create
@@ -33,10 +35,14 @@ namespace Front_End.Controllers
         // POST: RolController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(RolViewModel rol)
         {
             try
             {
+                rolHelper = new RolHelper();
+                rol = rolHelper.Add(rol);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -46,18 +52,22 @@ namespace Front_End.Controllers
         }
 
         // GET: RolController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int RolId)
         {
-            return View();
+            rolHelper = new RolHelper();
+            RolViewModel rol = rolHelper.GetByID(RolId);
+            return View(rol);
         }
 
         // POST: RolController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RolViewModel rol)
         {
             try
             {
+                rolHelper = new RolHelper();
+                rol = rolHelper.Edit(rol);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -67,18 +77,23 @@ namespace Front_End.Controllers
         }
 
         // GET: RolController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int RolId)
         {
-            return View();
+            rolHelper = new RolHelper();
+            RolViewModel seguro = rolHelper.GetByID(RolId);
+            return View(seguro);
         }
+
 
         // POST: RolController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(RolViewModel rol)
         {
             try
             {
+                rolHelper = new RolHelper();
+                rolHelper.Delete(rol.RolId);
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -41,7 +41,7 @@ namespace Front_End.Helpers
         {
             CarroModeloViewModel carroModelo = new CarroModeloViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/carroModelo/" + CarroModeloId);
+            HttpResponseMessage responseMessage = repository.GetResponse("api/CarroModelo/" + CarroModeloId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             carroModelo = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
 
@@ -58,7 +58,7 @@ namespace Front_End.Helpers
         public CarroModeloViewModel Edit(CarroModeloViewModel carromodelo)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/carroModelo/", carromodelo);
+            HttpResponseMessage responseMessage = repository.PutResponse("api/CarroModelo/", carromodelo);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             CarroModeloViewModel carroModeloAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
             return carroModeloAPI;
@@ -73,7 +73,7 @@ namespace Front_End.Helpers
         public CarroModeloViewModel Add(CarroModeloViewModel carroModelo)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/carroModelo/", carroModelo);
+            HttpResponseMessage responseMessage = repository.PostResponse("api/CarroModelo/", carroModelo);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             CarroModeloViewModel carroModeloAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
             return carroModeloAPI;
@@ -90,7 +90,7 @@ namespace Front_End.Helpers
         {
             CarroModeloViewModel carroModelo = new CarroModeloViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/carroModelo/" + CarroModeloId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("api/CarroModelo/" + CarroModeloId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

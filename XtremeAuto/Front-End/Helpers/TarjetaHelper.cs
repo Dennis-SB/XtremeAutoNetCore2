@@ -20,7 +20,7 @@ namespace Front_End.Helpers
 
 
             List<TarjetaViewModel> lista = new List<TarjetaViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Tarjeta/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Tarjeta/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -38,7 +38,7 @@ namespace Front_End.Helpers
         {
             TarjetaViewModel tarjeta = new TarjetaViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/tarjeta/" + TarjetaId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Tarjeta/" + TarjetaId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             tarjeta = JsonConvert.DeserializeObject<TarjetaViewModel>(content);
 
@@ -55,7 +55,7 @@ namespace Front_End.Helpers
         public TarjetaViewModel Edit(TarjetaViewModel tarjeta)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/rol/", tarjeta);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/Tarjeta/", tarjeta);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             TarjetaViewModel tarjetaAPI = JsonConvert.DeserializeObject<TarjetaViewModel>(content);
             return tarjetaAPI;
@@ -70,7 +70,7 @@ namespace Front_End.Helpers
         public TarjetaViewModel Add(TarjetaViewModel tarjeta)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/tarjeta/", tarjeta);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/Tarjeta/", tarjeta);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             TarjetaViewModel tarjetaAPI = JsonConvert.DeserializeObject<TarjetaViewModel>(content);
             return tarjetaAPI;
@@ -86,7 +86,7 @@ namespace Front_End.Helpers
         {
             TarjetaViewModel tarjeta = new TarjetaViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/tarjeta/" + TarjetaId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/Tarjeta/" + TarjetaId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

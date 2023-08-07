@@ -20,7 +20,7 @@ namespace Front_End.Helpers
 
 
             List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Usuario/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/usuario/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -38,7 +38,7 @@ namespace Front_End.Helpers
         {
             UsuarioViewModel usuario = new UsuarioViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/usuario/" + UsuarioId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/usuario/" + UsuarioId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
 
@@ -55,7 +55,7 @@ namespace Front_End.Helpers
         public UsuarioViewModel Edit(UsuarioViewModel usuario)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/rol/", usuario);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/usuario", usuario);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             UsuarioViewModel usuarioAPI = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
             return usuarioAPI;
@@ -70,7 +70,7 @@ namespace Front_End.Helpers
         public UsuarioViewModel Add(UsuarioViewModel usuario)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/usuario/", usuario);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/usuario/", usuario);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             UsuarioViewModel usuarioAPI = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
             return usuarioAPI;
@@ -86,7 +86,7 @@ namespace Front_End.Helpers
         {
             UsuarioViewModel usuario = new UsuarioViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/tarjeta/" + UsuarioId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/usuario/" + UsuarioId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

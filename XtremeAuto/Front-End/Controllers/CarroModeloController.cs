@@ -9,8 +9,6 @@ namespace Front_End.Controllers
     {
         CarroModeloHelper carroModeloHelper;
 
-
-
         // GET: CarroModeloController
         public ActionResult Index()
         {
@@ -23,9 +21,12 @@ namespace Front_End.Controllers
         }
 
         // GET: CarroModeloController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int CarroModeloId)
         {
-            return View();
+
+            carroModeloHelper = new CarroModeloHelper();
+            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(CarroModeloId);
+            return View(carroModelo);
         }
 
         // GET: CarroModeloController/Create
@@ -37,10 +38,14 @@ namespace Front_End.Controllers
         // POST: CarroModeloController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CarroModeloViewModel carroModelo)
         {
             try
             {
+                carroModeloHelper = new CarroModeloHelper();
+                carroModelo = carroModeloHelper.Add(carroModelo);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -50,18 +55,25 @@ namespace Front_End.Controllers
         }
 
         // GET: CarroModeloController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int CarroModeloId)
         {
-            return View();
+            carroModeloHelper = new CarroModeloHelper();
+            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(CarroModeloId);
+            return View(carroModelo);
         }
+
 
         // POST: CarroModeloController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CarroModeloViewModel carroModelo)
         {
             try
             {
+                carroModeloHelper = new CarroModeloHelper();
+                carroModelo = carroModeloHelper.Edit(carroModelo);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -71,18 +83,22 @@ namespace Front_End.Controllers
         }
 
         // GET: CarroModeloController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+        public ActionResult Delete(int CarroModeloId)
+        { 
+            carroModeloHelper = new CarroModeloHelper();
+            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(CarroModeloId);
+            return View(carroModelo);
         }
 
         // POST: CarroModeloController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(CarroModeloViewModel carroModelo)
         {
             try
             {
+                carroModeloHelper = new CarroModeloHelper();
+                carroModeloHelper.Delete(carroModelo.CarroModeloId);
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -20,7 +20,7 @@ namespace Front_End.Helpers
 
 
             List<RuedaViewModel> lista = new List<RuedaViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rueda/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Rueda/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -38,7 +38,7 @@ namespace Front_End.Helpers
         {
             RuedaViewModel rueda = new RuedaViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Rueda/" + RuedaId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Rueda/" + RuedaId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             rueda = JsonConvert.DeserializeObject<RuedaViewModel>(content);
 
@@ -55,7 +55,7 @@ namespace Front_End.Helpers
         public RuedaViewModel Edit(RuedaViewModel rueda)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/rueda/", rueda);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/Rueda/", rueda);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             RuedaViewModel ruedaAPI = JsonConvert.DeserializeObject<RuedaViewModel>(content);
             return ruedaAPI;
@@ -70,7 +70,7 @@ namespace Front_End.Helpers
         public RuedaViewModel Add(RuedaViewModel rueda)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/rueda/", rueda);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/Rueda/", rueda);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             RuedaViewModel ruedaAPI = JsonConvert.DeserializeObject<RuedaViewModel>(content);
             return ruedaAPI;
@@ -86,7 +86,7 @@ namespace Front_End.Helpers
         {
             RuedaViewModel rueda = new RuedaViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/rueda/" + RuedaId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/Rueda/" + RuedaId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

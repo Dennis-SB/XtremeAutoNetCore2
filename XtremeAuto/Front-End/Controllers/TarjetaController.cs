@@ -20,9 +20,12 @@ namespace Front_End.Controllers
         }
 
         // GET: TarjetaController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int TarjetaId)
         {
-            return View();
+
+            tarjetaHelper = new TarjetaHelper();
+            TarjetaViewModel tarjeta = tarjetaHelper.GetByID(TarjetaId);
+            return View(tarjeta);
         }
 
         // GET: TarjetaController/Create
@@ -34,10 +37,14 @@ namespace Front_End.Controllers
         // POST: TarjetaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(TarjetaViewModel tarjeta)
         {
             try
             {
+                tarjetaHelper = new TarjetaHelper();
+                tarjeta = tarjetaHelper.Add(tarjeta);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,18 +54,22 @@ namespace Front_End.Controllers
         }
 
         // GET: TarjetaController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int TarjetaId)
         {
-            return View();
+            tarjetaHelper = new TarjetaHelper();
+            TarjetaViewModel tarjeta = tarjetaHelper.GetByID(TarjetaId);
+            return View(tarjeta);
         }
 
         // POST: TarjetaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(TarjetaViewModel tarjeta)
         {
             try
             {
+                tarjetaHelper = new TarjetaHelper();
+                tarjeta = tarjetaHelper.Edit(tarjeta);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,18 +79,22 @@ namespace Front_End.Controllers
         }
 
         // GET: TarjetaController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int TarjetaId)
         {
-            return View();
+            tarjetaHelper = new TarjetaHelper();
+            TarjetaViewModel seguro = tarjetaHelper.GetByID(TarjetaId);
+            return View(seguro);
         }
 
         // POST: TarjetaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(TarjetaViewModel tarjeta)
         {
             try
             {
+                tarjetaHelper = new TarjetaHelper();
+                tarjetaHelper.Delete(tarjeta.TarjetaId);
                 return RedirectToAction(nameof(Index));
             }
             catch

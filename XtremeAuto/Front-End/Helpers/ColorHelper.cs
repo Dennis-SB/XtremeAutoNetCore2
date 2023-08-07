@@ -18,7 +18,7 @@ namespace Front_End.Helpers
         {
 
             List<ColorViewModel> lista = new List<ColorViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/color/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Color/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -36,7 +36,7 @@ namespace Front_End.Helpers
         {
             ColorViewModel color = new ColorViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/Color/" + ColorId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Color/" + ColorId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             color = JsonConvert.DeserializeObject<ColorViewModel>(content);
 
@@ -53,7 +53,7 @@ namespace Front_End.Helpers
         public ColorViewModel Edit(ColorViewModel color)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/color/", color);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/Color/", color);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             ColorViewModel colorAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
             return colorAPI;
@@ -68,7 +68,7 @@ namespace Front_End.Helpers
         public ColorViewModel Add(ColorViewModel color)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/color/", color);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/Color/", color);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             ColorViewModel colorAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
             return colorAPI;
@@ -84,7 +84,7 @@ namespace Front_End.Helpers
         {
             ColorViewModel color = new ColorViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/color/" + ColorId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/Color/" + ColorId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

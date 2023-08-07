@@ -20,7 +20,7 @@ namespace Front_End.Helpers
 
 
             List<SeguroViewModel> lista = new List<SeguroViewModel>();
-            HttpResponseMessage responseMessage = repository.GetResponse("api/seguro/");
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Seguro/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
@@ -38,7 +38,7 @@ namespace Front_End.Helpers
         {
             SeguroViewModel carroModelo = new SeguroViewModel();
 
-            HttpResponseMessage responseMessage = repository.GetResponse("api/seguro/" + SeguroId);
+            HttpResponseMessage responseMessage = repository.GetResponse("/api/Seguro/" + SeguroId);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
             carroModelo = JsonConvert.DeserializeObject<SeguroViewModel>(content);
 
@@ -53,7 +53,7 @@ namespace Front_End.Helpers
         public SeguroViewModel Edit(SeguroViewModel seguro)
         {
 
-            HttpResponseMessage responseMessage = repository.PutResponse("api/seguro/", seguro);
+            HttpResponseMessage responseMessage = repository.PutResponse("/api/Seguro/", seguro);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             SeguroViewModel seguroAPI = JsonConvert.DeserializeObject<SeguroViewModel>(content);
             return seguroAPI;
@@ -65,10 +65,10 @@ namespace Front_End.Helpers
 
 
         #region Create
-        public SeguroViewModel Add(SeguroViewModel category)
+        public SeguroViewModel Add(SeguroViewModel seguro)
         {
 
-            HttpResponseMessage responseMessage = repository.PostResponse("api/carroModelo/", category);
+            HttpResponseMessage responseMessage = repository.PostResponse("/api/Seguro/", seguro);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             SeguroViewModel seguroAPI = JsonConvert.DeserializeObject<SeguroViewModel>(content);
             return seguroAPI;
@@ -85,7 +85,7 @@ namespace Front_End.Helpers
         {
             SeguroViewModel seguro  = new SeguroViewModel();
 
-            HttpResponseMessage responseMessage = repository.DeleteResponse("api/seguro/" + SeguroId);
+            HttpResponseMessage responseMessage = repository.DeleteResponse("/api/Seguro/" + SeguroId);
             // string content = responseMessage.Content.ReadAsStringAsync().Result;
             // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
 

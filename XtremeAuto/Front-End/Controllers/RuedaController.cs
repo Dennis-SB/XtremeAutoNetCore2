@@ -20,9 +20,11 @@ namespace Front_End.Controllers
         }
 
         // GET: RuedaController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int RuedaId)
         {
-            return View();
+            ruedaHelper = new RuedaHelper();
+            RuedaViewModel rueda = ruedaHelper.GetByID(RuedaId);
+            return View(rueda);
         }
 
         // GET: RuedaController/Create
@@ -34,10 +36,14 @@ namespace Front_End.Controllers
         // POST: RuedaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(RuedaViewModel rueda)
         {
             try
             {
+                ruedaHelper = new RuedaHelper();
+                rueda = ruedaHelper.Add(rueda);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,18 +53,22 @@ namespace Front_End.Controllers
         }
 
         // GET: RuedaController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int RuedaId)
         {
-            return View();
+            ruedaHelper = new RuedaHelper();
+            RuedaViewModel rueda = ruedaHelper.GetByID(RuedaId);
+            return View(rueda);
         }
 
         // POST: RuedaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RuedaViewModel rueda)
         {
             try
             {
+                ruedaHelper = new RuedaHelper();
+                rueda = ruedaHelper.Edit(rueda);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,18 +78,22 @@ namespace Front_End.Controllers
         }
 
         // GET: RuedaController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int RuedaId)
         {
-            return View();
+            ruedaHelper = new RuedaHelper();
+            RuedaViewModel seguro = ruedaHelper.GetByID(RuedaId);
+            return View(seguro);
         }
 
         // POST: RuedaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(RuedaViewModel rueda)
         {
             try
             {
+                ruedaHelper = new RuedaHelper();
+                ruedaHelper.Delete(rueda.RuedaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
