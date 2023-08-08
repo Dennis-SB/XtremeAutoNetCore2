@@ -12,9 +12,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class TarjetaController : ControllerBase
     {
-
         private ITarjetaDAL tarjetaDAL;
-
         private TarjetaModel Convertir(Tarjetum tarjeta)
         {
             return new TarjetaModel
@@ -25,11 +23,8 @@ namespace BackEnd.Controllers
                 NumeroDeTarjeta = tarjeta.NumeroDeTarjeta,
                 Cvv = tarjeta.Cvv,
                 FechaVencimiento = tarjeta.FechaVencimiento
-
             };
         }
-
-
 
         private Tarjetum Convertir(TarjetaModel tarjeta)
         {
@@ -44,34 +39,24 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public TarjetaController()
         {
             tarjetaDAL = new TarjetaDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<TarjetaController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<Tarjetum> tarjetas = await tarjetaDAL.GetAll();
             List<TarjetaModel> models = new List<TarjetaModel>();
-
             foreach (var tarjeta in tarjetas)
             {
-
                 models.Add(Convertir(tarjeta));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -80,29 +65,21 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             Tarjetum tarjeta = await tarjetaDAL.Get(id);
-
-
             return new JsonResult(Convertir(tarjeta));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<TarjetaController>
         [HttpPost]
         public JsonResult Post([FromBody] TarjetaModel tarjeta)
         {
-
             tarjetaDAL.Add(Convertir(tarjeta));
             return new JsonResult(tarjeta);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<TarjetaController>/5
         [HttpPut]
         public JsonResult Put([FromBody] TarjetaModel tarjeta)
@@ -111,7 +88,6 @@ namespace BackEnd.Controllers
             return new JsonResult(tarjeta);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<TarjetaController>/5
@@ -122,12 +98,8 @@ namespace BackEnd.Controllers
             {
                 TarjetaId = id
             };
-
             tarjetaDAL.Remove(tarjeta);
-
         }
-
         #endregion
-
     }
 }

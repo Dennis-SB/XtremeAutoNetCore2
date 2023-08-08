@@ -15,7 +15,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<Transaccion> unidad;
-
         public bool Add(Transaccion entity)
         {
             try
@@ -23,7 +22,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddTransaccion] @VentaID, @TarjetaID, @FechaTransaccion, @FechaCorte, @InteresesMorosidad, @Pagado, @Precio";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@VentaID",
@@ -76,7 +74,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -84,29 +81,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Transaccion> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Transaccion> Find(Expression<Func<Transaccion, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Transaccion> Get(int id)
         {
             Transaccion transaccion = null;
             using (unidad = new UnidadDeTrabajo<Transaccion>(new XtremeAutoNetCoreContext()))
             {
-
                 transaccion = await unidad.genericDAL.Get(id);
-
             }
             return transaccion;
         }
-
         public async Task<IEnumerable<Transaccion>> GetAll()
         {
             List<Transaccion> transacciones = new List<Transaccion>();
@@ -119,7 +110,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 transacciones.Add(
                     new Transaccion
                     {
@@ -133,12 +123,9 @@ namespace DAL.Implementations
                         Precio = item.Precio
                     }
                     );
-
             }
             return transacciones;
-
         }
-
         public bool Remove(Transaccion entity)
         {
             try
@@ -146,7 +133,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteTransaccion] @TransaccionID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@TransaccionID",
@@ -157,7 +143,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -165,22 +150,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Transaccion> entities)
         {
             throw new NotImplementedException();
         }
-
         public Transaccion SingleOrDefault(Expression<Func<Transaccion, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Transaccion entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateTransaccion] @TransaccionID, @VentaID, @TarjetaID, @FechaTransaccion, @FechaCorte, @InteresesMorosidad, @Pagado, @Precio";
 
                 var param = new SqlParameter[]

@@ -15,7 +15,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<CarroVendido> unidad;
-
         public bool Add(CarroVendido entity)
         {
             try
@@ -23,7 +22,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddCarroVendido] @RuedaID, @ColorID, @CarroModeloID, @SeguroID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@RuedaID",
@@ -55,7 +53,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -63,29 +60,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<CarroVendido> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<CarroVendido> Find(Expression<Func<CarroVendido, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<CarroVendido> Get(int id)
         {
             CarroVendido carroVendido = null;
             using (unidad = new UnidadDeTrabajo<CarroVendido>(new XtremeAutoNetCoreContext()))
             {
-
                 carroVendido = await unidad.genericDAL.Get(id);
-
             }
             return carroVendido;
         }
-
         public async Task<IEnumerable<CarroVendido>> GetAll()
         {
             List<CarroVendido> carroVendidos = new List<CarroVendido>();
@@ -98,7 +89,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 carroVendidos.Add(
                     new CarroVendido
                     {
@@ -112,10 +102,7 @@ namespace DAL.Implementations
                     );
             }
             return carroVendidos;
-
-
         }
-
         public bool Remove(CarroVendido entity)
         {
             try
@@ -123,7 +110,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteCarroVendido] @CarroVendidoID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@CarroVendidoID",
@@ -134,7 +120,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -142,22 +127,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<CarroVendido> entities)
         {
             throw new NotImplementedException();
         }
-
         public CarroVendido SingleOrDefault(Expression<Func<CarroVendido, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(CarroVendido entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateCarroVendido] @CarroVendidoID, @RuedaID, @ColorID, @CarroModeloID, @SeguroID";
 
                 var param = new SqlParameter[]
@@ -197,7 +178,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.SeguroId
                     }
-
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);

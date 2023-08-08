@@ -15,7 +15,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<Ruedum> unidad;
-
         public bool Add(Ruedum entity)
         {
             try
@@ -23,7 +22,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddRueda] @Nombre, @Precio, @Imagen";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
@@ -48,7 +46,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -56,29 +53,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Ruedum> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Ruedum> Find(Expression<Func<Ruedum, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Ruedum> Get(int id)
         {
             Ruedum rueda = null;
             using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCoreContext()))
             {
-
                 rueda = await unidad.genericDAL.Get(id);
-
             }
             return rueda;
         }
-
         public async Task<IEnumerable<Ruedum>> GetAll()
         {
             List<Ruedum> ruedas = new List<Ruedum>();
@@ -91,7 +82,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 ruedas.Add(
                     new Ruedum
                     {
@@ -101,11 +91,9 @@ namespace DAL.Implementations
                         Imagen= item.Imagen
                     }
                     );
-
             }
             return ruedas;
         }
-
         public bool Remove(Ruedum entity)
         {
             try
@@ -113,7 +101,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteRueda] @RuedaID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@RuedaID",
@@ -124,7 +111,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -132,22 +118,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Ruedum> entities)
         {
             throw new NotImplementedException();
         }
-
         public Ruedum SingleOrDefault(Expression<Func<Ruedum, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Ruedum entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateRueda] @RuedaID, @Nombre, @Imagen, @Precio";
 
                 var param = new SqlParameter[]
@@ -164,7 +146,6 @@ namespace DAL.Implementations
                     {
                         ParameterName = "@Nombre",
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Nombre
                     },
@@ -174,7 +155,6 @@ namespace DAL.Implementations
                         SqlDbType= System.Data.SqlDbType.NVarChar,
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Imagen
-
                     },
                     new SqlParameter()
                     {

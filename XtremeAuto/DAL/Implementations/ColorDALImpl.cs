@@ -15,7 +15,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<Color> unidad;
-
         public bool Add(Color entity)
         {
             try
@@ -23,7 +22,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddColor] @Nombre,@Imagen";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
@@ -41,7 +39,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -49,29 +46,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Color> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Color> Find(Expression<Func<Color, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Color> Get(int id)
         {
             Color color = null;
             using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCoreContext()))
             {
-
                 color = await unidad.genericDAL.Get(id);
-
             }
             return color;
         }
-
         public async Task<IEnumerable<Color>> GetAll()
         {
             List<Color> colores = new List<Color>();
@@ -84,7 +75,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 colores.Add(
                     new Color
                     {
@@ -93,11 +83,9 @@ namespace DAL.Implementations
                         Imagen= item.Imagen
                     }
                     );
-
             }
             return colores;
         }
-
         public bool Remove(Color entity)
         {
             try
@@ -105,7 +93,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteColor] @ColorID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@ColorID",
@@ -116,7 +103,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -124,22 +110,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Color> entities)
         {
             throw new NotImplementedException();
         }
-
         public Color SingleOrDefault(Expression<Func<Color, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Color entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateColor] @ColorID, @Nombre,@Imagen";
 
                 var param = new SqlParameter[]

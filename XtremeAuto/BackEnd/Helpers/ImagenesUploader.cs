@@ -9,7 +9,6 @@ namespace BackEnd.Helpers
 	{
         public string uploadImage(IFormFile uploadImage)
         {
-
             try
             {
                 string parentFolderName = "assets";
@@ -27,8 +26,7 @@ namespace BackEnd.Helpers
                 {
                     uploadImage.CopyTo(stream);
                     return "/assets/" + formattedDate + "/" + uploadImage.FileName;
-                }
-               
+                }      
             }
             catch (Exception)
             {
@@ -37,4 +35,3 @@ namespace BackEnd.Helpers
         }
 	}
 }
-

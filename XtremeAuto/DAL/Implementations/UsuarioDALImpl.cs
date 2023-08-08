@@ -17,7 +17,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<Usuario> unidad;
-
         public bool Add(Usuario entity)
         {
             try
@@ -25,7 +24,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddUsuario] @Nombre,@Apellido, @Salario, @Cedula, @Email, @PasswordHash, @SecurityStamp,@Telefono,@Username,@RolID ,@LockoutEnabled,@FailedAttemptsCount,@LockoutEndDateUtc";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
@@ -120,7 +118,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -128,32 +125,25 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Usuario> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Usuario> Find(Expression<Func<Usuario, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Usuario> Get(int id)
         {
             Usuario usuario = null;
             using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCoreContext()))
             {
-
                 usuario = await unidad.genericDAL.Get(id);
-
             }
             return usuario;
         }
-
         public async Task<IEnumerable<Usuario>> GetAll()
         {
-
             List<Usuario> usuarios = new List<Usuario>();
             List<sp_GetAllUsuarios_Result> resultado;
 
@@ -183,12 +173,9 @@ namespace DAL.Implementations
                         LockoutEndDateUtc = item.LockoutEndDateUtc
                     }
                     );
-
             }
             return usuarios;
-
         }
-
         public bool Remove(Usuario entity)
         {
             try
@@ -196,7 +183,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteUsuario] @UsuarioID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@UsuarioID",
@@ -207,7 +193,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -215,22 +200,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Usuario> entities)
         {
             throw new NotImplementedException();
         }
-
         public Usuario SingleOrDefault(Expression<Func<Usuario, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Usuario entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateUsuario] @UsuarioID, @Nombre,@Apellido, @Salario, @Cedula, @Email, @PasswordHash, @SecurityStamp,@Telefono,@Username,@RolID ,@LockoutEnabled,@FailedAttemptsCount,@LockoutEndDateUtc";
 
                 var param = new SqlParameter[]
@@ -253,9 +234,7 @@ namespace DAL.Implementations
                     new SqlParameter()
                     {
                         ParameterName = "@Apellido",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Apellido
                     },
@@ -269,54 +248,42 @@ namespace DAL.Implementations
                     new SqlParameter()
                     {
                         ParameterName = "@Cedula",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Cedula
                     },
                     new SqlParameter()
                     {
                         ParameterName = "@Email",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Email
                     },
                     new SqlParameter()
                     {
                         ParameterName = "@PasswordHash",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.PasswordHash
                     },
                     new SqlParameter()
                     {
                         ParameterName = "@SecurityStamp",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.SecurityStamp
                     },
                     new SqlParameter()
                     {
                         ParameterName = "@Telefono",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Telefono
                     },
                     new SqlParameter()
                     {
                         ParameterName = "@Username",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Username
                     },
@@ -348,9 +315,6 @@ namespace DAL.Implementations
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.LockoutEndDateUtc
                     }
-
-
-
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);

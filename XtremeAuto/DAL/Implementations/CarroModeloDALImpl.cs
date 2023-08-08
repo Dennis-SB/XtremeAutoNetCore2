@@ -16,7 +16,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<CarroModelo> unidad;
-
         public bool Add(CarroModelo entity)
         {
             try
@@ -91,17 +90,14 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<CarroModelo> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<CarroModelo> Find(Expression<Func<CarroModelo, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<CarroModelo> Get(int id)
         {
             CarroModelo carroModelo = null;
@@ -113,7 +109,6 @@ namespace DAL.Implementations
             }
             return carroModelo;
         }
-
         public async Task<IEnumerable<CarroModelo>> GetAll()
         {
             List<CarroModelo> carroModelos = new List<CarroModelo>();
@@ -142,9 +137,7 @@ namespace DAL.Implementations
                     );
             }
             return carroModelos;
-
         }
-
         public bool Remove(CarroModelo entity)
         {
             try
@@ -152,7 +145,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteCarroModelo] @CarroModeloID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@CarroModeloID",
@@ -163,7 +155,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -171,22 +162,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<CarroModelo> entities)
         {
             throw new NotImplementedException();
         }
-
         public CarroModelo SingleOrDefault(Expression<Func<CarroModelo, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(CarroModelo entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateCarroModelo] @CarroModeloID, @Disponible, @Tipo, @Marca, @Modelo, @Descripcion, @Precio, @Imagen,@Cantidad";
 
                 var param = new SqlParameter[]

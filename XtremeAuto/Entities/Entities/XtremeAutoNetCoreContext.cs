@@ -14,10 +14,10 @@ namespace Entities.Entities
             optionBuilder.UseSqlServer(Util.ConnectionString);
 
         }
-
         public XtremeAutoNetCoreContext(DbContextOptions<XtremeAutoNetCoreContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<CarroModelo> CarroModelos { get; set; } = null!;
@@ -46,7 +46,6 @@ namespace Entities.Entities
             optionsBuilder.UseSqlServer(Util.ConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -275,10 +274,8 @@ namespace Entities.Entities
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Venta__UsuarioID__48CFD27E");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

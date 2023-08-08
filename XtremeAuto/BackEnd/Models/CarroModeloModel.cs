@@ -1,7 +1,6 @@
 ﻿using BackEnd.Models;
 namespace BackEnd.Models
 {
-
     public class CarroModeloModel
     {
         public int CarroModeloId { get; set; }
