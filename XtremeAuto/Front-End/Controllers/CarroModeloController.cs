@@ -106,5 +106,40 @@ namespace Front_End.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult UploadImage(int id)
+        {
+            carroModeloHelper = new CarroModeloHelper();
+            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(id);
+            return View(carroModelo);
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage(CarroModeloViewModel carroModelo, List<IFormFile> files)
+        {
+
+           /* if (files.Count > 0)
+            {
+                IFormFile formFile = files[0];
+
+                using (var ms = new MemoryStream())
+                {
+                    formFile.CopyTo(ms);
+                    carroModelo.Imagen = ms.ToArray();
+                }
+            }*/
+
+
+            carroModeloHelper = new CarroModeloHelper();
+            CarroModeloViewModel cat = carroModeloHelper.GetByID(carroModelo.CarroModeloId);
+            cat.Imagen = carroModelo.Imagen;
+
+            carroModeloHelper.Edit(cat);
+
+
+            return RedirectToAction("Details", new { id = cat.CarroModeloId });
+        }
+
     }
 }

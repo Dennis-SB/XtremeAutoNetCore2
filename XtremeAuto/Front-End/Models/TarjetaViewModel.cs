@@ -11,4 +11,4 @@
         public bool LockoutEnabled { get; set; }
     }
 }
-}
+
