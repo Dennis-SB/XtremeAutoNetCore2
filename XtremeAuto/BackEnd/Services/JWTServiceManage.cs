@@ -6,26 +6,21 @@ using System.Security.Claims;
 using System.Text;
 using BackEnd.Services;
 
-
 namespace BackEnd.Services
 {
     public class JWTServiceManage : IJWTTokenServices
     {
         private readonly IConfiguration _configuration;
-
         public JWTServiceManage(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
         public JWTTokens Authenticate(UsuarioModel usuario)
         {
-
             //if (!_dbcontext.Users.Any(e => e.UserName == users.UserName && e.Password == users.Password))
             //{
             //    return null;
             //}
-
             var tokenhandler = new JwtSecurityTokenHandler();
             var tkey = Encoding.UTF8.GetBytes("JNSJDNFJNSDJKBNWER7345BWSEHFB34023HUNSFD02SDF2");
             var ToeknDescp = new SecurityTokenDescriptor
@@ -43,4 +38,3 @@ namespace BackEnd.Services
         }
     }
 }
-
