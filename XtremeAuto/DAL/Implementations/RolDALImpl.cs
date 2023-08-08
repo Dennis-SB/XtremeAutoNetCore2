@@ -23,7 +23,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddRol] @Nombre";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
@@ -34,7 +33,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -42,29 +40,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Rol> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Rol> Find(Expression<Func<Rol, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Rol> Get(int id)
         {
             Rol rol = null;
             using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCoreContext()))
             {
-
                 rol = await unidad.genericDAL.Get(id);
-
             }
             return rol;
         }
-
         public async Task<IEnumerable<Rol>> GetAll()
         {
             List<Rol> roles = new List<Rol>();
@@ -77,7 +69,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 roles.Add(
                     new Rol
                     {
@@ -85,11 +76,9 @@ namespace DAL.Implementations
                         Nombre = item.Nombre
                     }
                     );
-
             }
             return roles;
         }
-
         public bool Remove(Rol entity)
         {
             try
@@ -97,7 +86,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteRol] @RolID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@RolID",
@@ -108,7 +96,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -116,22 +103,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Rol> entities)
         {
             throw new NotImplementedException();
         }
-
         public Rol SingleOrDefault(Expression<Func<Rol, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Rol entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateRol] @RolID, @Nombre";
 
                 var param = new SqlParameter[]
