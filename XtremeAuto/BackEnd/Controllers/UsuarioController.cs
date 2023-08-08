@@ -20,12 +20,10 @@ namespace BackEnd.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-
         private IUsuarioDAL usuarioDAL;
         private BcryptPasswordHelper BcryptPasswordHelper;
         private readonly JWTServiceManage _jwttokenservice;
         private readonly IConfiguration _configuration;
-
         private UsuarioModel Convertir(Usuario usuario)
         {
             return new UsuarioModel
@@ -46,9 +44,6 @@ namespace BackEnd.Controllers
                 LockoutEndDateUtc = usuario.LockoutEndDateUtc
             };
         }
-
-
-
         private Usuario Convertir(UsuarioModel usuario)
         {
             return new Usuario
@@ -70,55 +65,39 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public UsuarioController()
         {
             BcryptPasswordHelper = new BcryptPasswordHelper();
             _jwttokenservice = new JWTServiceManage(_configuration);
             usuarioDAL = new UsuarioDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<RolController>
         [HttpGet]
         public async Task<JsonResult> GetAsync()
         {
             IEnumerable<Usuario> usuarios = await usuarioDAL.GetAll();
             List<UsuarioModel> models = new List<UsuarioModel>();
-
             foreach (var usuario in usuarios)
             {
-
                 models.Add(Convertir(usuario));
-
             }
-
             return new JsonResult(models);
         }
-       
 
         // GET api/<RolController>/5
         [HttpGet("{id}")]
-        
         public async Task<JsonResult> Get(int id)
         {
             Usuario usuario = await usuarioDAL.Get(id);
-
             return new JsonResult(usuario);
-
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<RolController>
         [HttpPost]
         public JsonResult Post([FromBody] UsuarioModel usuario)
@@ -127,13 +106,9 @@ namespace BackEnd.Controllers
             usuarioDAL.Add(Convertir(usuario));
             return new JsonResult(usuario);
         }
-
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<RolController>/5
         [HttpPut]
         public JsonResult Put([FromBody] UsuarioModel usuario)
@@ -142,7 +117,6 @@ namespace BackEnd.Controllers
             return new JsonResult(usuario);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<RolController>/5
@@ -153,9 +127,7 @@ namespace BackEnd.Controllers
             {
                 UsuarioId = id
             };
-
             usuarioDAL.Remove(usuario);
-
         }
         #endregion
 
@@ -165,14 +137,11 @@ namespace BackEnd.Controllers
         public JsonResult Authenticate(UsuarioModel usuario)
         {
             JWTTokens token = _jwttokenservice.Authenticate(usuario);
-
             if (token == null)
             {
                 return new JsonResult(new { Message = "Correo Eléctronico o contraseña Incorrectos" });
             }
-
             return new JsonResult(token);
         }
-
     }
 }
