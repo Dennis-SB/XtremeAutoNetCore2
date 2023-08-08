@@ -15,7 +15,6 @@ namespace DAL.Implementations
     {
         private XtremeAutoNetCoreContext _xtremeAutoNetCoreContext;
         private UnidadDeTrabajo<Seguro> unidad;
-
         public bool Add(Seguro entity)
         {
             try
@@ -23,7 +22,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_AddSeguro] @Nombre, @Plazo, @Precio";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
@@ -48,7 +46,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -56,29 +53,23 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void AddRange(IEnumerable<Seguro> entities)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<Seguro> Find(Expression<Func<Seguro, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public async Task<Seguro> Get(int id)
         {
             Seguro seguro = null;
             using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCoreContext()))
             {
-
                 seguro = await unidad.genericDAL.Get(id);
-
             }
             return seguro;
         }
-
         public async Task<IEnumerable<Seguro>> GetAll()
         {
             List<Seguro> seguros = new List<Seguro>();
@@ -91,7 +82,6 @@ namespace DAL.Implementations
                         .ToListAsync();
             foreach (var item in resultado)
             {
-
                 seguros.Add(
                     new Seguro
                     {
@@ -101,12 +91,9 @@ namespace DAL.Implementations
                         Plazo = item.Plazo
                     }
                     );
-
             }
             return seguros;
-
         }
-
         public bool Remove(Seguro entity)
         {
             try
@@ -114,7 +101,6 @@ namespace DAL.Implementations
                 string sql = "exec [dbo].[sp_DeleteSeguro] @SeguroID";
                 var param = new SqlParameter[]
                 {
-
                     new SqlParameter()
                     {
                         ParameterName = "@SeguroID",
@@ -125,7 +111,6 @@ namespace DAL.Implementations
                 };
                 XtremeAutoNetCoreContext xtremeAutoNetCoreContext = new XtremeAutoNetCoreContext();
                 int resultado = xtremeAutoNetCoreContext.Database.ExecuteSqlRaw(sql, param);
-
                 return true;
             }
             catch (Exception)
@@ -133,22 +118,18 @@ namespace DAL.Implementations
                 return false;
             }
         }
-
         public void RemoveRange(IEnumerable<Seguro> entities)
         {
             throw new NotImplementedException();
         }
-
         public Seguro SingleOrDefault(Expression<Func<Seguro, bool>> predicate)
         {
             throw new NotImplementedException();
         }
-
         public bool Update(Seguro entity)
         {
             try
             {
-
                 string sql = "exec [dbo].[sp_UpdateSeguro] @SeguroID, @Nombre, @Plazo, @Precio";
 
                 var param = new SqlParameter[]
@@ -163,9 +144,7 @@ namespace DAL.Implementations
                     new SqlParameter()
                     {
                         ParameterName = "@Nombre",
-
                         SqlDbType= System.Data.SqlDbType.VarChar,
-
                         Direction = System.Data.ParameterDirection.Input,
                         Value= entity.Nombre
                     },
