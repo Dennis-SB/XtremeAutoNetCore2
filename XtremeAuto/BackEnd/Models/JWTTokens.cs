@@ -7,4 +7,3 @@ namespace BackEnd.Models
         public string refToken { get; set; } = null!;
     }
 }
-
