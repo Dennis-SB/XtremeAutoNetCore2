@@ -12,9 +12,7 @@ namespace BackEnd.Controllers
     [ApiController]
     public class VentaController : ControllerBase
     {
-
         private IVentaDAL ventaDAL;
-
         private VentaModel Convertir(Ventum venta)
         {
             return new VentaModel
@@ -27,12 +25,8 @@ namespace BackEnd.Controllers
                 Intereses = venta.Intereses,
                 SaldoPendiente = venta.SaldoPendiente,
                 SaldoAbonado = venta.SaldoAbonado
-
             };
         }
-
-
-
         private Ventum Convertir(VentaModel venta)
         {
             return new Ventum
@@ -48,34 +42,24 @@ namespace BackEnd.Controllers
             };
         }
 
-
         #region Constructores
-
         public VentaController()
         {
             ventaDAL = new VentaDALImpl();
-
         }
-
         #endregion
 
-
         #region Consultas
-
         // GET: api/<VentaController>
         [HttpGet]
         public async Task<JsonResult> Get()
         {
             IEnumerable<Ventum> ventas = await ventaDAL.GetAll();
             List<VentaModel> models = new List<VentaModel>();
-
             foreach (var venta in ventas)
             {
-
                 models.Add(Convertir(venta));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -84,29 +68,21 @@ namespace BackEnd.Controllers
         public async Task<JsonResult> Get(int id)
         {
             Ventum venta = await ventaDAL.Get(id);
-
-
             return new JsonResult(Convertir(venta));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<VentaController>
         [HttpPost]
         public JsonResult Post([FromBody] VentaModel venta)
         {
-
             ventaDAL.Add(Convertir(venta));
             return new JsonResult(venta);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<VentaController>/5
         [HttpPut]
         public JsonResult Put([FromBody] VentaModel venta)
@@ -115,7 +91,6 @@ namespace BackEnd.Controllers
             return new JsonResult(venta);
         }
         #endregion
-
 
         #region Eliminar
         // DELETE api/<VentaController>/5
@@ -126,12 +101,8 @@ namespace BackEnd.Controllers
             {
                 VentaId = id
             };
-
             ventaDAL.Remove(venta);
-
         }
-
         #endregion
-
     }
 }
