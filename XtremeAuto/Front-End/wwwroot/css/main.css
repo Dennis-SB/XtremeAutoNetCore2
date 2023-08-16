@@ -5790,4 +5790,35 @@ label {
   .footer-text i {
     color: #ffba00; }
 
+    .round-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin-right: 10px;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.3s;
+  }
+  
+  .round-btn.active {
+      background-color: #007bff; /* Cambia el color de fondo cuando se selecciona */
+  }
+  
+  .round-img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 50%;
+  }
+  
+  
+  
+  
+  
+  
+
 /*# sourceMappingURL=main.css.map */
