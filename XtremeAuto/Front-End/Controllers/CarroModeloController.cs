@@ -101,7 +101,7 @@ namespace Front_End.Controllers
             }
         }
 
-
+        /*
         public ActionResult UploadImage(int id)
         {
             carroModeloHelper = new CarroModeloHelper();
@@ -113,7 +113,7 @@ namespace Front_End.Controllers
         public ActionResult UploadImage(CarroModeloViewModel carroModelo, List<IFormFile> files)
         {
 
-           /* if (files.Count > 0)
+            if (files.Count > 0)
             {
                 IFormFile formFile = files[0];
 
@@ -122,7 +122,7 @@ namespace Front_End.Controllers
                     formFile.CopyTo(ms);
                     carroModelo.Imagen = ms.ToArray();
                 }
-            }*/
+            }
 
 
             carroModeloHelper = new CarroModeloHelper();
@@ -133,7 +133,7 @@ namespace Front_End.Controllers
 
 
             return RedirectToAction("Details", new { id = cat.CarroModeloId });
-        }
+        }*/
 
     }
 }

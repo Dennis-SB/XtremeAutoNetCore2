@@ -15,7 +15,7 @@ namespace BackEnd.Controllers
     public class CarroModeloController : ControllerBase
     {
         private ICarroModeloDAL carroModeloDAL;
-        private ImagenesUploader ImagenesUploader;
+        //private ImagenesUploader ImagenesUploader;
 
         private CarroModeloModel Convertir(CarroModelo carroModelo)
         {
@@ -52,7 +52,7 @@ namespace BackEnd.Controllers
         #region Constructores
         public CarroModeloController()
         {
-            ImagenesUploader = new ImagenesUploader();
+            //ImagenesUploader = new ImagenesUploader();
             carroModeloDAL = new CarroModeloDALImpl();
         }
         #endregion

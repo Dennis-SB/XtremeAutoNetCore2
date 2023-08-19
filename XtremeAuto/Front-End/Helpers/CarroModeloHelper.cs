@@ -70,7 +70,6 @@ namespace Front_End.Helpers
             return carroModelo;
         }
         #endregion
-
     }
 }
 
