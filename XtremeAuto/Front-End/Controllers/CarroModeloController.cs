@@ -13,17 +13,13 @@ namespace Front_End.Controllers
         public ActionResult Index()
         {
             carroModeloHelper = new CarroModeloHelper();
-           
             List<CarroModeloViewModel> list = carroModeloHelper.GetAll();
-
             return View(list);
-
         }
 
         // GET: CarroModeloController/Details/5
         public ActionResult Details(int CarroModeloId)
         {
-
             carroModeloHelper = new CarroModeloHelper();
             CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(CarroModeloId);
             return View(carroModelo);
@@ -44,8 +40,6 @@ namespace Front_End.Controllers
             {
                 carroModeloHelper = new CarroModeloHelper();
                 carroModelo = carroModeloHelper.Add(carroModelo);
-
-
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -14,8 +14,7 @@ namespace Front_End.Helpers
         public ServiceRepository()
         {
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:5296");
-
+            Client.BaseAddress = new Uri("http://localhost:5088");
         }
         public HttpResponseMessage GetResponse(string url)
         {
@@ -33,8 +32,5 @@ namespace Front_End.Helpers
         {
             return Client.DeleteAsync(url).Result;
         }
-
-
-
     }
 }
