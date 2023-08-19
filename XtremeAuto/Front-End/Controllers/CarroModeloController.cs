@@ -13,17 +13,13 @@ namespace Front_End.Controllers
         public ActionResult Index()
         {
             carroModeloHelper = new CarroModeloHelper();
-           
             List<CarroModeloViewModel> list = carroModeloHelper.GetAll();
-
             return View(list);
-
         }
 
         // GET: CarroModeloController/Details/5
         public ActionResult Details(int CarroModeloId)
         {
-
             carroModeloHelper = new CarroModeloHelper();
             CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(CarroModeloId);
             return View(carroModelo);
@@ -44,8 +40,6 @@ namespace Front_End.Controllers
             {
                 carroModeloHelper = new CarroModeloHelper();
                 carroModelo = carroModeloHelper.Add(carroModelo);
-
-
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -107,7 +101,7 @@ namespace Front_End.Controllers
             }
         }
 
-
+        /*
         public ActionResult UploadImage(int id)
         {
             carroModeloHelper = new CarroModeloHelper();
@@ -119,7 +113,7 @@ namespace Front_End.Controllers
         public ActionResult UploadImage(CarroModeloViewModel carroModelo, List<IFormFile> files)
         {
 
-           /* if (files.Count > 0)
+            if (files.Count > 0)
             {
                 IFormFile formFile = files[0];
 
@@ -128,7 +122,7 @@ namespace Front_End.Controllers
                     formFile.CopyTo(ms);
                     carroModelo.Imagen = ms.ToArray();
                 }
-            }*/
+            }
 
 
             carroModeloHelper = new CarroModeloHelper();
@@ -139,7 +133,7 @@ namespace Front_End.Controllers
 
 
             return RedirectToAction("Details", new { id = cat.CarroModeloId });
-        }
+        }*/
 
     }
 }

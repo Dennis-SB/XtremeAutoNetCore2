@@ -11,6 +11,10 @@ namespace Front_End.Controllers
         {
             return View();
         }
-       
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }
