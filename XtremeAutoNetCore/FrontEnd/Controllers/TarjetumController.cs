@@ -7,43 +7,51 @@ namespace FrontEnd.Controllers
 {
     public class TarjetumController : Controller
     {
-        TarjetumHelper entidadHelper;
+        private TarjetumHelper entidadHelper;
+        private UsuarioHelper enlace1Helper;
 
-        #region Index
-        // GET: CategoryController
-        public ActionResult Index()
+        #region Constructores
+        public TarjetumController()
         {
             entidadHelper = new TarjetumHelper();
+            enlace1Helper = new UsuarioHelper();
+        }
+        #endregion
+
+        #region Index
+        // GET: ProductController
+        public ActionResult Index()
+        {
             List<TarjetumViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
         #endregion
 
         #region Details
-        // GET: CategoryController/Details/5
+        // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            entidadHelper = new TarjetumHelper();
             TarjetumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
         #endregion
 
         #region Create
-        // GET: CategoryController/Create
+        // GET: ProductController/Create
         public ActionResult Create()
         {
-            return View();
+            TarjetumViewModel entidad = new TarjetumViewModel();
+            entidad.Usuarios = enlace1Helper.GetAll();
+            return View(entidad);
         }
 
-        // POST: CategoryController/Create
+        // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new TarjetumHelper();
                 entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
@@ -55,22 +63,21 @@ namespace FrontEnd.Controllers
         #endregion
 
         #region Edit
-        // GET: CategoryController/Edit/5
+        // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            entidadHelper = new TarjetumHelper();
             TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            entidad.Usuarios = enlace1Helper.GetAll();
             return View(entidad);
         }
 
-        // POST: CategoryController/Edit/5
+        // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new TarjetumHelper();
                 entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
@@ -82,23 +89,21 @@ namespace FrontEnd.Controllers
         #endregion
 
         #region Delete
-        // GET: CategoryController/Delete/5
+        // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            entidadHelper = new TarjetumHelper();
             TarjetumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
-        // POST: CategoryController/Delete/5
+        // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new TarjetumHelper();
-                entidadHelper.Delete(entidad.TarjetaId);
+                entidadHelper.Delete(entidad.UsuarioId);
                 return RedirectToAction(nameof(Index));
             }
             catch

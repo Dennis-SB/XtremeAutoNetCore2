@@ -7,7 +7,6 @@ namespace FrontEnd.Controllers
 {
     public class UsuarioController : Controller
     {
-
         private UsuarioHelper entidadHelper;
         private RolHelper enlace1Helper;
 
