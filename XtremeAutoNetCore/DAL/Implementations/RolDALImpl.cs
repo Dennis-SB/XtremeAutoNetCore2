@@ -14,27 +14,24 @@ namespace DAL.Implementations
         private XtremeAutoNetCore2Context Context;
         private UnidadDeTrabajo<Rol> unidad;
 
-        public bool Add(Rol entity)
+        public bool Add(Rol entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Add(entity);
+                    unidad.genericDAL.Add(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void AddRange(IEnumerable<Rol> entities)
+        public void AddRange(IEnumerable<Rol> entidades)
         {
             throw new NotImplementedException();
         }
@@ -46,52 +43,43 @@ namespace DAL.Implementations
 
         public Rol Get(int id)
         {
-            Rol category = null;
+            Rol entidad = null;
             using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCore2Context()))
             {
-                category = unidad.genericDAL.Get(id);
-
-
+                entidad = unidad.genericDAL.Get(id);
             }
 
-            return category;
+            return entidad;
         }
 
         public IEnumerable<Rol> GetAll()
         {
-            IEnumerable<Rol> categories = null;
+            IEnumerable<Rol> entidades = null;
             using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCore2Context()))
             {
-                categories = unidad.genericDAL.GetAll();
-
-
+                entidades = unidad.genericDAL.GetAll();
             }
-
-            return categories;
-
+            return entidades;
         }
 
-        public bool Remove(Rol entity)
+        public bool Remove(Rol entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Remove(entity);
+                    unidad.genericDAL.Remove(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void RemoveRange(IEnumerable<Rol> entities)
+        public void RemoveRange(IEnumerable<Rol> entidades)
         {
             throw new NotImplementedException();
         }
@@ -101,22 +89,19 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Update(Rol entity)
+        public bool Update(Rol entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Rol>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Update(entity);
+                    unidad.genericDAL.Update(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

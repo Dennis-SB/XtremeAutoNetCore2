@@ -14,27 +14,24 @@ namespace DAL.Implementations
         private XtremeAutoNetCore2Context Context;
         private UnidadDeTrabajo<Ruedum> unidad;
 
-        public bool Add(Ruedum entity)
+        public bool Add(Ruedum entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Add(entity);
+                    unidad.genericDAL.Add(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void AddRange(IEnumerable<Ruedum> entities)
+        public void AddRange(IEnumerable<Ruedum> entidades)
         {
             throw new NotImplementedException();
         }
@@ -46,52 +43,42 @@ namespace DAL.Implementations
 
         public Ruedum Get(int id)
         {
-            Ruedum category = null;
+            Ruedum entidad = null;
             using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCore2Context()))
             {
-                category = unidad.genericDAL.Get(id);
-
-
+                entidad = unidad.genericDAL.Get(id);
             }
-
-            return category;
+            return entidad;
         }
 
         public IEnumerable<Ruedum> GetAll()
         {
-            IEnumerable<Ruedum> categories = null;
+            IEnumerable<Ruedum> entidades = null;
             using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCore2Context()))
             {
-                categories = unidad.genericDAL.GetAll();
-
-
+                entidades = unidad.genericDAL.GetAll();
             }
-
-            return categories;
-
+            return entidades;
         }
 
-        public bool Remove(Ruedum entity)
+        public bool Remove(Ruedum entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Remove(entity);
+                    unidad.genericDAL.Remove(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void RemoveRange(IEnumerable<Ruedum> entities)
+        public void RemoveRange(IEnumerable<Ruedum> entidades)
         {
             throw new NotImplementedException();
         }
@@ -101,22 +88,19 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Update(Ruedum entity)
+        public bool Update(Ruedum entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Ruedum>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Update(entity);
+                    unidad.genericDAL.Update(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

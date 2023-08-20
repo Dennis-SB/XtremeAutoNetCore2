@@ -14,27 +14,24 @@ namespace DAL.Implementations
         private XtremeAutoNetCore2Context Context;
         private UnidadDeTrabajo<Seguro> unidad;
 
-        public bool Add(Seguro entity)
+        public bool Add(Seguro entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Add(entity);
+                    unidad.genericDAL.Add(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void AddRange(IEnumerable<Seguro> entities)
+        public void AddRange(IEnumerable<Seguro> entidades)
         {
             throw new NotImplementedException();
         }
@@ -46,52 +43,42 @@ namespace DAL.Implementations
 
         public Seguro Get(int id)
         {
-            Seguro category = null;
+            Seguro entidad = null;
             using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCore2Context()))
             {
-                category = unidad.genericDAL.Get(id);
-
-
+                entidad = unidad.genericDAL.Get(id);
             }
-
-            return category;
+            return entidad;
         }
 
         public IEnumerable<Seguro> GetAll()
         {
-            IEnumerable<Seguro> categories = null;
+            IEnumerable<Seguro> entidades = null;
             using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCore2Context()))
             {
-                categories = unidad.genericDAL.GetAll();
-
-
+                entidades = unidad.genericDAL.GetAll();
             }
-
-            return categories;
-
+            return entidades;
         }
 
-        public bool Remove(Seguro entity)
+        public bool Remove(Seguro entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Remove(entity);
+                    unidad.genericDAL.Remove(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void RemoveRange(IEnumerable<Seguro> entities)
+        public void RemoveRange(IEnumerable<Seguro> entidades)
         {
             throw new NotImplementedException();
         }
@@ -101,22 +88,19 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Update(Seguro entity)
+        public bool Update(Seguro entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Seguro>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Update(entity);
+                    unidad.genericDAL.Update(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

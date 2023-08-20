@@ -14,27 +14,24 @@ namespace DAL.Implementations
         private XtremeAutoNetCore2Context Context;
         private UnidadDeTrabajo<Color> unidad;
 
-        public bool Add(Color entity)
+        public bool Add(Color entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Add(entity);
+                    unidad.genericDAL.Add(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void AddRange(IEnumerable<Color> entities)
+        public void AddRange(IEnumerable<Color> entidades)
         {
             throw new NotImplementedException();
         }
@@ -46,52 +43,42 @@ namespace DAL.Implementations
 
         public Color Get(int id)
         {
-            Color category = null;
+            Color entidad = null;
             using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCore2Context()))
             {
-                category = unidad.genericDAL.Get(id);
-
-
+                entidad = unidad.genericDAL.Get(id);
             }
-
-            return category;
+            return entidad;
         }
 
         public IEnumerable<Color> GetAll()
         {
-            IEnumerable<Color> categories = null;
+            IEnumerable<Color> entidades = null;
             using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCore2Context()))
             {
-                categories = unidad.genericDAL.GetAll();
-
-
+                entidades = unidad.genericDAL.GetAll();
             }
-
-            return categories;
-
+            return entidades;
         }
 
-        public bool Remove(Color entity)
+        public bool Remove(Color entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Remove(entity);
+                    unidad.genericDAL.Remove(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
-        public void RemoveRange(IEnumerable<Color> entities)
+        public void RemoveRange(IEnumerable<Color> entidades)
         {
             throw new NotImplementedException();
         }
@@ -101,22 +88,19 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Update(Color entity)
+        public bool Update(Color entidad)
         {
             try
             {
                 using (unidad = new UnidadDeTrabajo<Color>(new XtremeAutoNetCore2Context()))
                 {
-                    unidad.genericDAL.Update(entity);
+                    unidad.genericDAL.Update(entidad);
                     unidad.Complete();
                 }
-
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
