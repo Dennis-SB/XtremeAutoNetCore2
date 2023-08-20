@@ -12,61 +12,48 @@ namespace BackEnd.Controllers
     [ApiController]
     public class RuedumController : Controller
     {
+        private IRuedumDAL entidadDAL;
 
-        private IRuedumDAL ruedumDAL;
-
-        private RuedumModel Convertir(Ruedum ruedum)
+        private RuedumModel Convertir(Ruedum entidad)
         {
             return new RuedumModel
             {
-                RuedaId = ruedum.RuedaId,
-                Nombre = ruedum.Nombre,
-                Precio = ruedum.Precio,
-                Imagen = ruedum.Imagen
+                RuedaId = entidad.RuedaId,
+                Nombre = entidad.Nombre,
+                Precio = entidad.Precio,
+                Imagen = entidad.Imagen
             };
         }
-
-
-
-        private Ruedum Convertir(RuedumModel ruedum)
+        
+        private Ruedum Convertir(RuedumModel entidad)
         {
             return new Ruedum
             {
-                RuedaId = ruedum.RuedaId,
-                Nombre = ruedum.Nombre,
-                Precio = ruedum.Precio,
-                Imagen = ruedum.Imagen
+                RuedaId = entidad.RuedaId,
+                Nombre = entidad.Nombre,
+                Precio = entidad.Precio,
+                Imagen = entidad.Imagen
             };
         }
-
-
+        
         #region Constructores
-
         public RuedumController()
         {
-            ruedumDAL = new RuedumDALImpl();
-
+            entidadDAL = new RuedumDALImpl();
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Ruedum> ruedas = ruedumDAL.GetAll();
+            IEnumerable<Ruedum> entidades = entidadDAL.GetAll();
             List<RuedumModel> models = new List<RuedumModel>();
-
-            foreach (var ruedum in ruedas)
+            foreach (var entidad in entidades)
             {
-
-                models.Add(Convertir(ruedum));
-
+                models.Add(Convertir(entidad));
             }
-
             return new JsonResult(models);
         }
 
@@ -74,55 +61,42 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Ruedum ruedum = ruedumDAL.Get(id);
-
-
-            return new JsonResult(Convertir(ruedum));
+            Ruedum entidad = entidadDAL.Get(id);
+            return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] RuedumModel ruedum)
+        public JsonResult Post([FromBody] RuedumModel entidad)
         {
-
-            ruedumDAL.Add(Convertir(ruedum));
-            return new JsonResult(ruedum);
+            entidadDAL.Add(Convertir(entidad));
+            return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] RuedumModel ruedum)
+        public JsonResult Put([FromBody] RuedumModel entidad)
         {
-            ruedumDAL.Update(Convertir(ruedum));
-            return new JsonResult(ruedum);
+            entidadDAL.Update(Convertir(entidad));
+            return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Ruedum ruedum = new Ruedum
+            Ruedum entidad = new Ruedum
             {
                 RuedaId = id
             };
-
-            ruedumDAL.Remove(ruedum);
-
+            entidadDAL.Remove(entidad);
         }
-
         #endregion
-
     }
 }

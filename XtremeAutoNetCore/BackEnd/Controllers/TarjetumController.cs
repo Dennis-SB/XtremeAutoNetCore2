@@ -13,66 +13,54 @@ namespace BackEnd.Controllers
     public class TarjetumController : Controller
     {
 
-        private ITarjetumDAL tarjetumDAL;
+        private ITarjetumDAL entidadDAL;
 
-        private TarjetumModel Convertir(Tarjetum tarjetum)
+        private TarjetumModel Convertir(Tarjetum entidad)
         {
             return new TarjetumModel
             {
-                TarjetaId = tarjetum.TarjetaId,
-                UsuarioId = tarjetum.UsuarioId,
-                Nombre = tarjetum.Nombre,
-                NumeroDeTarjeta = tarjetum.NumeroDeTarjeta,
-                Cvv = tarjetum.Cvv,
-                FechaVencimiento = tarjetum.FechaVencimiento,
-                LockoutEnabled = tarjetum.LockoutEnabled
+                TarjetaId = entidad.TarjetaId,
+                UsuarioId = entidad.UsuarioId,
+                Nombre = entidad.Nombre,
+                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
+                Cvv = entidad.Cvv,
+                FechaVencimiento = entidad.FechaVencimiento,
+                LockoutEnabled = entidad.LockoutEnabled
             };
         }
-
-
-
-        private Tarjetum Convertir(TarjetumModel tarjetum)
+        
+        private Tarjetum Convertir(TarjetumModel entidad)
         {
             return new Tarjetum
             {
-                TarjetaId = tarjetum.TarjetaId,
-                UsuarioId = tarjetum.UsuarioId,
-                Nombre = tarjetum.Nombre,
-                NumeroDeTarjeta = tarjetum.NumeroDeTarjeta,
-                Cvv = tarjetum.Cvv,
-                FechaVencimiento = tarjetum.FechaVencimiento,
-                LockoutEnabled = tarjetum.LockoutEnabled
+                TarjetaId = entidad.TarjetaId,
+                UsuarioId = entidad.UsuarioId,
+                Nombre = entidad.Nombre,
+                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
+                Cvv = entidad.Cvv,
+                FechaVencimiento = entidad.FechaVencimiento,
+                LockoutEnabled = entidad.LockoutEnabled
             };
         }
-
-
+        
         #region Constructores
-
         public TarjetumController()
         {
-            tarjetumDAL = new TarjetumDALImpl();
-
+            entidadDAL = new TarjetumDALImpl();
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Tarjetum> tarjetas = tarjetumDAL.GetAll();
+            IEnumerable<Tarjetum> entidades = entidadDAL.GetAll();
             List<TarjetumModel> models = new List<TarjetumModel>();
-
-            foreach (var tarjetum in tarjetas)
+            foreach (var entidad in entidades)
             {
-
-                models.Add(Convertir(tarjetum));
-
+                models.Add(Convertir(entidad));
             }
-
             return new JsonResult(models);
         }
 
@@ -80,55 +68,42 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Tarjetum tarjetum = tarjetumDAL.Get(id);
-
-
-            return new JsonResult(Convertir(tarjetum));
+            Tarjetum entidad = entidadDAL.Get(id);
+            return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] TarjetumModel tarjetum)
+        public JsonResult Post([FromBody] TarjetumModel entidad)
         {
-
-            tarjetumDAL.Add(Convertir(tarjetum));
-            return new JsonResult(tarjetum);
+            entidadDAL.Add(Convertir(entidad));
+            return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] TarjetumModel tarjetum)
+        public JsonResult Put([FromBody] TarjetumModel entidad)
         {
-            tarjetumDAL.Update(Convertir(tarjetum));
-            return new JsonResult(tarjetum);
+            entidadDAL.Update(Convertir(entidad));
+            return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Tarjetum tarjetum = new Tarjetum
+            Tarjetum entidad = new Tarjetum
             {
                 TarjetaId = id
             };
-
-            tarjetumDAL.Remove(tarjetum);
-
+            entidadDAL.Remove(entidad);
         }
-
         #endregion
-
     }
 }

@@ -12,71 +12,58 @@ namespace BackEnd.Controllers
     [ApiController]
     public class CarroModeloController : Controller
     {
+        private ICarroModeloDAL entidadDAL;
 
-        private ICarroModeloDAL carroModeloDAL;
-
-        private CarroModeloModel Convertir(CarroModelo carroModelo)
+        private CarroModeloModel Convertir(CarroModelo entidad)
         {
             return new CarroModeloModel
             {
-                CarroModeloId = carroModelo.CarroModeloId,
-                Disponible = carroModelo.Disponible,
-                Tipo = carroModelo.Tipo,
-                Marca = carroModelo.Marca,
-                Modelo = carroModelo.Modelo,
-                Descripcion = carroModelo.Descripcion,
-                Precio = carroModelo.Precio,
-                Cantidad = carroModelo.Cantidad,
-                Imagen = carroModelo.Imagen
+                CarroModeloId = entidad.CarroModeloId,
+                Disponible = entidad.Disponible,
+                Tipo = entidad.Tipo,
+                Marca = entidad.Marca,
+                Modelo = entidad.Modelo,
+                Descripcion = entidad.Descripcion,
+                Precio = entidad.Precio,
+                Cantidad = entidad.Cantidad,
+                Imagen = entidad.Imagen
             };
         }
-
-
-
-        private CarroModelo Convertir(CarroModeloModel carroModelo)
+        
+        private CarroModelo Convertir(CarroModeloModel entidad)
         {
             return new CarroModelo
             {
-                CarroModeloId = carroModelo.CarroModeloId,
-                Disponible = carroModelo.Disponible,
-                Tipo = carroModelo.Tipo,
-                Marca = carroModelo.Marca,
-                Modelo = carroModelo.Modelo,
-                Descripcion = carroModelo.Descripcion,
-                Precio = carroModelo.Precio,
-                Cantidad = carroModelo.Cantidad,
-                Imagen = carroModelo.Imagen
+                CarroModeloId = entidad.CarroModeloId,
+                Disponible = entidad.Disponible,
+                Tipo = entidad.Tipo,
+                Marca = entidad.Marca,
+                Modelo = entidad.Modelo,
+                Descripcion = entidad.Descripcion,
+                Precio = entidad.Precio,
+                Cantidad = entidad.Cantidad,
+                Imagen = entidad.Imagen
             };
         }
-
-
+        
         #region Constructores
-
         public CarroModeloController()
         {
-            carroModeloDAL = new CarroModeloDALImpl();
-
+            entidadDAL = new CarroModeloDALImpl();
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<CarroModelo> carroModelos = carroModeloDAL.GetAll();
+            IEnumerable<CarroModelo> entidades = entidadDAL.GetAll();
             List<CarroModeloModel> models = new List<CarroModeloModel>();
-
-            foreach (var carroModelo in carroModelos)
+            foreach (var entidad in entidades)
             {
-
-                models.Add(Convertir(carroModelo));
-
+                models.Add(Convertir(entidad));
             }
-
             return new JsonResult(models);
         }
 
@@ -84,55 +71,42 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            CarroModelo carroModelo = carroModeloDAL.Get(id);
-
-
-            return new JsonResult(Convertir(carroModelo));
+            CarroModelo entidad = entidadDAL.Get(id);
+            return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] CarroModeloModel carroModelo)
+        public JsonResult Post([FromBody] CarroModeloModel entidad)
         {
-
-            carroModeloDAL.Add(Convertir(carroModelo));
-            return new JsonResult(carroModelo);
+            entidadDAL.Add(Convertir(entidad));
+            return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] CarroModeloModel carroModelo)
+        public JsonResult Put([FromBody] CarroModeloModel entidad)
         {
-            carroModeloDAL.Update(Convertir(carroModelo));
-            return new JsonResult(carroModelo);
+            entidadDAL.Update(Convertir(entidad));
+            return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            CarroModelo carroModelo = new CarroModelo
+            CarroModelo entidad = new CarroModelo
             {
                 CarroModeloId = id
             };
-
-            carroModeloDAL.Remove(carroModelo);
-
+            entidadDAL.Remove(entidad);
         }
-
         #endregion
-
     }
 }

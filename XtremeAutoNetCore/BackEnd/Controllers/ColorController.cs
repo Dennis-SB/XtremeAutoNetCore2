@@ -12,59 +12,47 @@ namespace BackEnd.Controllers
     [ApiController]
     public class ColorController : Controller
     {
+        private IColorDAL entidadDAL;
 
-        private IColorDAL colorDAL;
-
-        private ColorModel Convertir(Color color)
+        private ColorModel Convertir(Color entidad)
         {
             return new ColorModel
             {
-                ColorId = color.ColorId,
-                Nombre = color.Nombre,
-                Imagen = color.Imagen
+                ColorId = entidad.ColorId,
+                Nombre = entidad.Nombre,
+                Imagen = entidad.Imagen
             };
         }
-
-
-
-        private Color Convertir(ColorModel color)
+        
+        private Color Convertir(ColorModel entidad)
         {
             return new Color
             {
-                ColorId = color.ColorId,
-                Nombre = color.Nombre,
-                Imagen = color.Imagen
+                ColorId = entidad.ColorId,
+                Nombre = entidad.Nombre,
+                Imagen = entidad.Imagen
             };
         }
-
-
+        
         #region Constructores
-
         public ColorController()
         {
-            colorDAL = new ColorDALImpl();
-
+            entidadDAL = new ColorDALImpl();
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Color> colores = colorDAL.GetAll();
+            IEnumerable<Color> entidades = entidadDAL.GetAll();
             List<ColorModel> models = new List<ColorModel>();
 
-            foreach (var color in colores)
+            foreach (var entidad in entidades)
             {
-
-                models.Add(Convertir(color));
-
+                models.Add(Convertir(entidad));
             }
-
             return new JsonResult(models);
         }
 
@@ -72,55 +60,42 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Color color = colorDAL.Get(id);
-
-
-            return new JsonResult(Convertir(color));
+            Color entidad = entidadDAL.Get(id);
+            return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] ColorModel color)
+        public JsonResult Post([FromBody] ColorModel entidad)
         {
-
-            colorDAL.Add(Convertir(color));
-            return new JsonResult(color);
+            entidadDAL.Add(Convertir(entidad));
+            return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] ColorModel color)
+        public JsonResult Put([FromBody] ColorModel entidad)
         {
-            colorDAL.Update(Convertir(color));
-            return new JsonResult(color);
+            entidadDAL.Update(Convertir(entidad));
+            return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Color color = new Color
+            Color entidad = new Color
             {
                 ColorId = id
             };
-
-            colorDAL.Remove(color);
-
+            entidadDAL.Remove(entidad);
         }
-
         #endregion
-
     }
 }

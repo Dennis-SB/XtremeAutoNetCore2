@@ -12,7 +12,6 @@ namespace BackEnd.Controllers
     [ApiController]
     public class RolController : Controller
     {
-
         private IRolDAL entidadDAL;
 
         private RolModel Convertir(Rol entidad)
@@ -23,9 +22,7 @@ namespace BackEnd.Controllers
                 Nombre = entidad.Nombre
             };
         }
-
-
-
+        
         private Rol Convertir(RolModel entidad)
         {
             return new Rol
@@ -34,35 +31,25 @@ namespace BackEnd.Controllers
                 Nombre = entidad.Nombre
             };
         }
-
-
+        
         #region Constructores
-
         public RolController()
         {
             entidadDAL = new RolDALImpl();
-
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
             IEnumerable<Rol> entidades = entidadDAL.GetAll();
             List<RolModel> models = new List<RolModel>();
-
             foreach (var entidad in entidades)
             {
-
                 models.Add(Convertir(entidad));
-
             }
-
             return new JsonResult(models);
         }
 
@@ -71,29 +58,21 @@ namespace BackEnd.Controllers
         public JsonResult Get(int id)
         {
             Rol entidad = entidadDAL.Get(id);
-
-
             return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
         public JsonResult Post([FromBody] RolModel entidad)
         {
-
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
         public JsonResult Put([FromBody] RolModel entidad)
@@ -102,8 +81,7 @@ namespace BackEnd.Controllers
             return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
@@ -113,12 +91,8 @@ namespace BackEnd.Controllers
             {
                 RolId = id
             };
-
             entidadDAL.Remove(entidad);
-
         }
-
         #endregion
-
     }
 }
