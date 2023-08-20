@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IVentaDAL: IDALGenerico<Ventum>
+    public interface IVentumDAL: IDALGenerico<Ventum>
     {
     }
 }
