@@ -55,10 +55,10 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Color> carroModelos = colorDAL.GetAll();
+            IEnumerable<Color> colores = colorDAL.GetAll();
             List<ColorModel> models = new List<ColorModel>();
 
-            foreach (var color in carroModelos)
+            foreach (var color in colores)
             {
 
                 models.Add(Convertir(color));

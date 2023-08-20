@@ -57,10 +57,10 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Seguro> carroModelos = seguroDAL.GetAll();
+            IEnumerable<Seguro> seguros = seguroDAL.GetAll();
             List<SeguroModel> models = new List<SeguroModel>();
 
-            foreach (var seguro in carroModelos)
+            foreach (var seguro in seguros)
             {
 
                 models.Add(Convertir(seguro));

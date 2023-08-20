@@ -57,10 +57,10 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Ruedum> carroModelos = ruedumDAL.GetAll();
+            IEnumerable<Ruedum> ruedas = ruedumDAL.GetAll();
             List<RuedumModel> models = new List<RuedumModel>();
 
-            foreach (var ruedum in carroModelos)
+            foreach (var ruedum in ruedas)
             {
 
                 models.Add(Convertir(ruedum));
