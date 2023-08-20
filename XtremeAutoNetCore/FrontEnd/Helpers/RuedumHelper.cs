@@ -13,105 +13,57 @@ namespace FrontEnd.Helpers
         }
 
         #region  GetALL
-
         public List<RuedumViewModel> GetAll()
         {
-
-
-
             List<RuedumViewModel> lista = new List<RuedumViewModel>();
             HttpResponseMessage responseMessage = repository.GetResponse("api/Ruedum/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
                 lista = JsonConvert.DeserializeObject<List<RuedumViewModel>>(content);
-
             }
-
-
-
-
             return lista;
         }
         #endregion
-
-
+        
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public RuedumViewModel GetByID(int id)
         {
-            RuedumViewModel ruedum = new RuedumViewModel();
-
+            RuedumViewModel entidad = new RuedumViewModel();
             HttpResponseMessage responseMessage = repository.GetResponse("api/Ruedum/" + id);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
-            ruedum = JsonConvert.DeserializeObject<RuedumViewModel>(content);
-
-            return ruedum;
-
+            entidad = JsonConvert.DeserializeObject<RuedumViewModel>(content);
+            return entidad;
         }
-
-
-
         #endregion
-
-
+        
         #region Update
-        public RuedumViewModel Edit(RuedumViewModel ruedum)
+        public RuedumViewModel Edit(RuedumViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PutResponse("api/Ruedum/", ruedum);
+            HttpResponseMessage responseMessage = repository.PutResponse("api/Ruedum/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            RuedumViewModel ruedumAPI = JsonConvert.DeserializeObject<RuedumViewModel>(content);
-            return ruedumAPI;
-
+            RuedumViewModel entidadAPI = JsonConvert.DeserializeObject<RuedumViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
-
+        
         #region Create
-        public RuedumViewModel Add(RuedumViewModel ruedum)
+        public RuedumViewModel Add(RuedumViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PostResponse("api/Ruedum/", ruedum);
+            HttpResponseMessage responseMessage = repository.PostResponse("api/Ruedum/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            RuedumViewModel ruedumAPI = JsonConvert.DeserializeObject<RuedumViewModel>(content);
-            return ruedumAPI;
-
+            RuedumViewModel entidadAPI = JsonConvert.DeserializeObject<RuedumViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
-
+        
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public RuedumViewModel Delete(int id)
         {
-            RuedumViewModel ruedum = new RuedumViewModel();
-
+            RuedumViewModel entidad = new RuedumViewModel();
             HttpResponseMessage responseMessage = repository.DeleteResponse("api/Ruedum/" + id);
-            // string content = responseMessage.Content.ReadAsStringAsync().Result;
-            // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
-
-            return ruedum;
-
+            return entidad;
         }
-
-
-
         #endregion
-
     }
 }

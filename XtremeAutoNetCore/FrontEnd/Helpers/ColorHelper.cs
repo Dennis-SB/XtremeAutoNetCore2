@@ -13,105 +13,57 @@ namespace FrontEnd.Helpers
         }
 
         #region  GetALL
-
         public List<ColorViewModel> GetAll()
         {
-
-
-
             List<ColorViewModel> lista = new List<ColorViewModel>();
             HttpResponseMessage responseMessage = repository.GetResponse("api/Color/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
                 lista = JsonConvert.DeserializeObject<List<ColorViewModel>>(content);
-
             }
-
-
-
-
             return lista;
         }
         #endregion
-
-
+        
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public ColorViewModel GetByID(int id)
         {
-            ColorViewModel color = new ColorViewModel();
-
+            ColorViewModel entidad = new ColorViewModel();
             HttpResponseMessage responseMessage = repository.GetResponse("api/Color/" + id);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
-            color = JsonConvert.DeserializeObject<ColorViewModel>(content);
-
-            return color;
-
+            entidad = JsonConvert.DeserializeObject<ColorViewModel>(content);
+            return entidad;
         }
-
-
-
         #endregion
-
-
+        
         #region Update
-        public ColorViewModel Edit(ColorViewModel color)
+        public ColorViewModel Edit(ColorViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PutResponse("api/Color/", color);
+            HttpResponseMessage responseMessage = repository.PutResponse("api/Color/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            ColorViewModel colorAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
-            return colorAPI;
-
+            ColorViewModel entidadAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
-
+        
         #region Create
-        public ColorViewModel Add(ColorViewModel color)
+        public ColorViewModel Add(ColorViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PostResponse("api/Color/", color);
+            HttpResponseMessage responseMessage = repository.PostResponse("api/Color/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            ColorViewModel colorAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
-            return colorAPI;
-
+            ColorViewModel entidadAPI = JsonConvert.DeserializeObject<ColorViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
 
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public ColorViewModel Delete(int id)
         {
-            ColorViewModel color = new ColorViewModel();
-
+            ColorViewModel entidad = new ColorViewModel();
             HttpResponseMessage responseMessage = repository.DeleteResponse("api/Color/" + id);
-            // string content = responseMessage.Content.ReadAsStringAsync().Result;
-            // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
-
-            return color;
-
+            return entidad;
         }
-
-
-
         #endregion
-
     }
 }
