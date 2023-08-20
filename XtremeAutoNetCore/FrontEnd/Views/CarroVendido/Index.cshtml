@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FrontEnd.Models.CarroVendidoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarroVendidoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RuedaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarroModeloId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeguroId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarroVendidoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RuedaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarroModeloId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeguroId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioTotal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CarroVendidoId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.CarroVendidoId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.CarroVendidoId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

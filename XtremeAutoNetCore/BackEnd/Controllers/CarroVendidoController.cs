@@ -97,7 +97,7 @@ namespace BackEnd.Controllers
         {
             CarroVendido entidad = new CarroVendido
             {
-                RolId = id
+                CarroVendidoId = id
             };
             entidadDAL.Remove(entidad);
         }
