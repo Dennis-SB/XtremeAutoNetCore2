@@ -103,7 +103,7 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                entidadHelper.Delete(entidad.UsuarioId);
+                entidadHelper.Delete(entidad.TarjetaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
