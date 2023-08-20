@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface ITarjetaDAL: IDALGenerico<Tarjetum>
+    public interface ITarjetumDAL: IDALGenerico<Tarjetum>
     {
 
     }

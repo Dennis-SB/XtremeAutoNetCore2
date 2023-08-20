@@ -13,105 +13,57 @@ namespace FrontEnd.Helpers
         }
 
         #region  GetALL
-
         public List<CarroModeloViewModel> GetAll()
         {
-
-
-
             List<CarroModeloViewModel> lista = new List<CarroModeloViewModel>();
             HttpResponseMessage responseMessage = repository.GetResponse("api/CarroModelo/");
             if (responseMessage != null)
             {
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
                 lista = JsonConvert.DeserializeObject<List<CarroModeloViewModel>>(content);
-
             }
-
-
-
-
             return lista;
         }
         #endregion
 
-
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public CarroModeloViewModel GetByID(int id)
         {
-            CarroModeloViewModel carroModelo = new CarroModeloViewModel();
-
+            CarroModeloViewModel entidad = new CarroModeloViewModel();
             HttpResponseMessage responseMessage = repository.GetResponse("api/CarroModelo/" + id);
             string content = responseMessage.Content.ReadAsStringAsync().Result;
-            carroModelo = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
-
-            return carroModelo;
-
+            entidad = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
+            return entidad;
         }
-
-
-
         #endregion
-
-
+        
         #region Update
-        public CarroModeloViewModel Edit(CarroModeloViewModel carroModelo)
+        public CarroModeloViewModel Edit(CarroModeloViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PutResponse("api/CarroModelo/", carroModelo);
+            HttpResponseMessage responseMessage = repository.PutResponse("api/CarroModelo/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            CarroModeloViewModel carroModeloAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
-            return carroModeloAPI;
-
+            CarroModeloViewModel entidadAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
-
+        
         #region Create
-        public CarroModeloViewModel Add(CarroModeloViewModel carroModelo)
+        public CarroModeloViewModel Add(CarroModeloViewModel entidad)
         {
-
-            HttpResponseMessage responseMessage = repository.PostResponse("api/CarroModelo/", carroModelo);
+            HttpResponseMessage responseMessage = repository.PostResponse("api/CarroModelo/", entidad);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
-            CarroModeloViewModel carroModeloAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
-            return carroModeloAPI;
-
+            CarroModeloViewModel entidadAPI = JsonConvert.DeserializeObject<CarroModeloViewModel>(content);
+            return entidadAPI;
         }
-
-
         #endregion
-
-
+        
         #region GetByID
-
-        /// <summary>
-        /// Obtener Categoria por ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public CarroModeloViewModel Delete(int id)
         {
-            CarroModeloViewModel carroModelo = new CarroModeloViewModel();
-
+            CarroModeloViewModel entidad = new CarroModeloViewModel();
             HttpResponseMessage responseMessage = repository.DeleteResponse("api/CarroModelo/" + id);
-            // string content = responseMessage.Content.ReadAsStringAsync().Result;
-            // category = JsonConvert.DeserializeObject<CategoryViewModel>(content);
-
-            return carroModelo;
-
+            return entidad;
         }
-
-
-
         #endregion
-
     }
 }

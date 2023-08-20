@@ -10,36 +10,32 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RuedumController : Controller
+    public class RolController : Controller
     {
-        private IRuedumDAL entidadDAL;
+        private IRolDAL entidadDAL;
 
-        private RuedumModel Convertir(Ruedum entidad)
+        private RolModel Convertir(Rol entidad)
         {
-            return new RuedumModel
+            return new RolModel
             {
-                RuedaId = entidad.RuedaId,
-                Nombre = entidad.Nombre,
-                Precio = entidad.Precio,
-                Imagen = entidad.Imagen
+                RolId = entidad.RolId,
+                Nombre = entidad.Nombre
             };
         }
         
-        private Ruedum Convertir(RuedumModel entidad)
+        private Rol Convertir(RolModel entidad)
         {
-            return new Ruedum
+            return new Rol
             {
-                RuedaId = entidad.RuedaId,
-                Nombre = entidad.Nombre,
-                Precio = entidad.Precio,
-                Imagen = entidad.Imagen
+                RolId = entidad.RolId,
+                Nombre = entidad.Nombre
             };
         }
         
         #region Constructores
-        public RuedumController()
+        public RolController()
         {
-            entidadDAL = new RuedumDALImpl();
+            entidadDAL = new RolDALImpl();
         }
         #endregion
         
@@ -48,8 +44,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Ruedum> entidades = entidadDAL.GetAll();
-            List<RuedumModel> models = new List<RuedumModel>();
+            IEnumerable<Rol> entidades = entidadDAL.GetAll();
+            List<RolModel> models = new List<RolModel>();
             foreach (var entidad in entidades)
             {
                 models.Add(Convertir(entidad));
@@ -61,7 +57,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Ruedum entidad = entidadDAL.Get(id);
+            Rol entidad = entidadDAL.Get(id);
             return new JsonResult(Convertir(entidad));
         }
         #endregion
@@ -69,7 +65,7 @@ namespace BackEnd.Controllers
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] RuedumModel entidad)
+        public JsonResult Post([FromBody] RolModel entidad)
         {
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
@@ -79,7 +75,7 @@ namespace BackEnd.Controllers
         #region Modificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] RuedumModel entidad)
+        public JsonResult Put([FromBody] RolModel entidad)
         {
             entidadDAL.Update(Convertir(entidad));
             return new JsonResult(entidad);
@@ -91,9 +87,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Ruedum entidad = new Ruedum
+            Rol entidad = new Rol
             {
-                RuedaId = id
+                RolId = id
             };
             entidadDAL.Remove(entidad);
         }

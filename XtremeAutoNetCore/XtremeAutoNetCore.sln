@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{4D58FA8F-D529-4B2D-AA36-0C8F9A6A03DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{4D58FA8F-D529-4B2D-AA36-0C8F9A6A03DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5D2480FB-980B-4215-AEF2-6B2C48471586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{5D2480FB-980B-4215-AEF2-6B2C48471586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd", "BackEnd\BackEnd.csproj", "{B0A529C3-BFB4-45F5-81A6-A77CE1B13AB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "BackEnd\BackEnd.csproj", "{B0A529C3-BFB4-45F5-81A6-A77CE1B13AB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Front-End", "Front-End\Front-End.csproj", "{5FA1AD04-A1BC-4F32-944B-AF4EB4E0C333}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{EF70BBE9-F86F-49F6-A9C0-60DF2E5EB312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{EF70BBE9-F86F-49F6-A9C0-60DF2E5EB312}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{B0A529C3-BFB4-45F5-81A6-A77CE1B13AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0A529C3-BFB4-45F5-81A6-A77CE1B13AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0A529C3-BFB4-45F5-81A6-A77CE1B13AB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FA1AD04-A1BC-4F32-944B-AF4EB4E0C333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FA1AD04-A1BC-4F32-944B-AF4EB4E0C333}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FA1AD04-A1BC-4F32-944B-AF4EB4E0C333}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FA1AD04-A1BC-4F32-944B-AF4EB4E0C333}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF70BBE9-F86F-49F6-A9C0-60DF2E5EB312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF70BBE9-F86F-49F6-A9C0-60DF2E5EB312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF70BBE9-F86F-49F6-A9C0-60DF2E5EB312}.Release|Any CPU.ActiveCfg = Release|Any CPU

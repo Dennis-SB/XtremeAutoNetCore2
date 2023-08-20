@@ -7,26 +7,29 @@ namespace FrontEnd.Controllers
 {
     public class RuedumController : Controller
     {
-        RuedumHelper ruedumHelper;
+        RuedumHelper entidadHelper;
 
+        #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            ruedumHelper = new RuedumHelper();
-            List<RuedumViewModel> list = ruedumHelper.GetAll();
-
+            entidadHelper = new RuedumHelper();
+            List<RuedumViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
+        #endregion
 
+        #region Details
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-
-            ruedumHelper = new RuedumHelper();
-            RuedumViewModel ruedum = ruedumHelper.GetByID(id);
-            return View(ruedum);
+            entidadHelper = new RuedumHelper();
+            RuedumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
+        #endregion
 
+        #region Create
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -36,14 +39,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RuedumViewModel ruedum)
+        public ActionResult Create(RuedumViewModel entidad)
         {
             try
             {
-                ruedumHelper = new RuedumHelper();
-                ruedum = ruedumHelper.Add(ruedum);
-
-
+                entidadHelper = new RuedumHelper();
+                entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,26 +52,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            ruedumHelper = new RuedumHelper();
-            RuedumViewModel ruedum = ruedumHelper.GetByID(id);
-            return View(ruedum);
+            entidadHelper = new RuedumHelper();
+            RuedumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RuedumViewModel ruedum)
+        public ActionResult Edit(RuedumViewModel entidad)
         {
             try
             {
-                ruedumHelper = new RuedumHelper();
-                ruedum = ruedumHelper.Edit(ruedum);
-
-
+                entidadHelper = new RuedumHelper();
+                entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,26 +79,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-
-            ruedumHelper = new RuedumHelper();
-            RuedumViewModel ruedum = ruedumHelper.GetByID(id);
-            return View(ruedum);
+            entidadHelper = new RuedumHelper();
+            RuedumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(RuedumViewModel ruedum)
+        public ActionResult Delete(RuedumViewModel entidad)
         {
             try
             {
-
-                ruedumHelper = new RuedumHelper();
-                ruedumHelper.Delete(ruedum.RuedaId);
+                entidadHelper = new RuedumHelper();
+                entidadHelper.Delete(entidad.RuedaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,5 +106,6 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

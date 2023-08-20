@@ -12,61 +12,48 @@ namespace BackEnd.Controllers
     [ApiController]
     public class SeguroController : Controller
     {
+        private ISeguroDAL entidadDAL;
 
-        private ISeguroDAL seguroDAL;
-
-        private SeguroModel Convertir(Seguro seguro)
+        private SeguroModel Convertir(Seguro entidad)
         {
             return new SeguroModel
             {
-                SeguroId = seguro.SeguroId,
-                Nombre = seguro.Nombre,
-                Plazo = seguro.Plazo,
-                Precio = seguro.Precio
+                SeguroId = entidad.SeguroId,
+                Nombre = entidad.Nombre,
+                Plazo = entidad.Plazo,
+                Precio = entidad.Precio
             };
         }
-
-
-
-        private Seguro Convertir(SeguroModel seguro)
+        
+        private Seguro Convertir(SeguroModel entidad)
         {
             return new Seguro
             {
-                SeguroId = seguro.SeguroId,
-                Nombre = seguro.Nombre,
-                Plazo = seguro.Plazo,
-                Precio = seguro.Precio
+                SeguroId = entidad.SeguroId,
+                Nombre = entidad.Nombre,
+                Plazo = entidad.Plazo,
+                Precio = entidad.Precio
             };
         }
-
-
+        
         #region Constructores
-
         public SeguroController()
         {
-            seguroDAL = new SeguroDALImpl();
-
+            entidadDAL = new SeguroDALImpl();
         }
-
         #endregion
-
-
+        
         #region Consultas
-
         // GET: api/<CategoryController>
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Seguro> carroModelos = seguroDAL.GetAll();
+            IEnumerable<Seguro> entidades = entidadDAL.GetAll();
             List<SeguroModel> models = new List<SeguroModel>();
-
-            foreach (var seguro in carroModelos)
+            foreach (var entidad in entidades)
             {
-
-                models.Add(Convertir(seguro));
-
+                models.Add(Convertir(entidad));
             }
-
             return new JsonResult(models);
         }
 
@@ -74,55 +61,42 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Seguro seguro = seguroDAL.Get(id);
-
-
-            return new JsonResult(Convertir(seguro));
+            Seguro entidad = entidadDAL.Get(id);
+            return new JsonResult(Convertir(entidad));
         }
         #endregion
 
         #region Agregar
-
-
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] SeguroModel seguro)
+        public JsonResult Post([FromBody] SeguroModel entidad)
         {
-
-            seguroDAL.Add(Convertir(seguro));
-            return new JsonResult(seguro);
+            entidadDAL.Add(Convertir(entidad));
+            return new JsonResult(entidad);
         }
-
         #endregion
 
         #region Modificar
-
-
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] SeguroModel seguro)
+        public JsonResult Put([FromBody] SeguroModel entidad)
         {
-            seguroDAL.Update(Convertir(seguro));
-            return new JsonResult(seguro);
+            entidadDAL.Update(Convertir(entidad));
+            return new JsonResult(entidad);
         }
         #endregion
-
-
+        
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Seguro seguro = new Seguro
+            Seguro entidad = new Seguro
             {
                 SeguroId = id
             };
-
-            seguroDAL.Remove(seguro);
-
+            entidadDAL.Remove(entidad);
         }
-
         #endregion
-
     }
 }

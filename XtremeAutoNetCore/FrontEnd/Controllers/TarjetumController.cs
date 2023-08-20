@@ -1,20 +1,20 @@
-﻿﻿using FrontEnd.Helpers;
+﻿using FrontEnd.Helpers;
 using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class CarroModeloController : Controller
+    public class TarjetumController : Controller
     {
-        CarroModeloHelper entidadHelper;
+        TarjetumHelper entidadHelper;
 
         #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            entidadHelper = new CarroModeloHelper();
-            List<CarroModeloViewModel> list = entidadHelper.GetAll();
+            entidadHelper = new TarjetumHelper();
+            List<TarjetumViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
         #endregion
@@ -23,8 +23,8 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-            entidadHelper = new CarroModeloHelper();
-            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
         #endregion
@@ -39,11 +39,11 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CarroModeloViewModel entidad)
+        public ActionResult Create(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new CarroModeloHelper();
+                entidadHelper = new TarjetumHelper();
                 entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
@@ -58,19 +58,19 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            entidadHelper = new CarroModeloHelper();
-            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarroModeloViewModel entidad)
+        public ActionResult Edit(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new CarroModeloHelper();
+                entidadHelper = new TarjetumHelper();
                 entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
@@ -85,20 +85,20 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-            entidadHelper = new CarroModeloHelper();
-            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(CarroModeloViewModel entidad)
+        public ActionResult Delete(TarjetumViewModel entidad)
         {
             try
             {
-                entidadHelper = new CarroModeloHelper();
-                entidadHelper.Delete(entidad.CarroModeloId);
+                entidadHelper = new TarjetumHelper();
+                entidadHelper.Delete(entidad.TarjetaId);
                 return RedirectToAction(nameof(Index));
             }
             catch

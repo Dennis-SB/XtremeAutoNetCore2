@@ -10,36 +10,42 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RuedumController : Controller
+    public class TarjetumController : Controller
     {
-        private IRuedumDAL entidadDAL;
+        private ITarjetumDAL entidadDAL;
 
-        private RuedumModel Convertir(Ruedum entidad)
+        private TarjetumModel Convertir(Tarjetum entidad)
         {
-            return new RuedumModel
+            return new TarjetumModel
             {
-                RuedaId = entidad.RuedaId,
+                TarjetaId = entidad.TarjetaId,
+                UsuarioId = entidad.UsuarioId,
                 Nombre = entidad.Nombre,
-                Precio = entidad.Precio,
-                Imagen = entidad.Imagen
+                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
+                Cvv = entidad.Cvv,
+                FechaVencimiento = entidad.FechaVencimiento,
+                LockoutEnabled = entidad.LockoutEnabled
             };
         }
         
-        private Ruedum Convertir(RuedumModel entidad)
+        private Tarjetum Convertir(TarjetumModel entidad)
         {
-            return new Ruedum
+            return new Tarjetum
             {
-                RuedaId = entidad.RuedaId,
+                TarjetaId = entidad.TarjetaId,
+                UsuarioId = entidad.UsuarioId,
                 Nombre = entidad.Nombre,
-                Precio = entidad.Precio,
-                Imagen = entidad.Imagen
+                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
+                Cvv = entidad.Cvv,
+                FechaVencimiento = entidad.FechaVencimiento,
+                LockoutEnabled = entidad.LockoutEnabled
             };
         }
         
         #region Constructores
-        public RuedumController()
+        public TarjetumController()
         {
-            entidadDAL = new RuedumDALImpl();
+            entidadDAL = new TarjetumDALImpl();
         }
         #endregion
         
@@ -48,8 +54,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Ruedum> entidades = entidadDAL.GetAll();
-            List<RuedumModel> models = new List<RuedumModel>();
+            IEnumerable<Tarjetum> entidades = entidadDAL.GetAll();
+            List<TarjetumModel> models = new List<TarjetumModel>();
             foreach (var entidad in entidades)
             {
                 models.Add(Convertir(entidad));
@@ -61,7 +67,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Ruedum entidad = entidadDAL.Get(id);
+            Tarjetum entidad = entidadDAL.Get(id);
             return new JsonResult(Convertir(entidad));
         }
         #endregion
@@ -69,7 +75,7 @@ namespace BackEnd.Controllers
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] RuedumModel entidad)
+        public JsonResult Post([FromBody] TarjetumModel entidad)
         {
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
@@ -79,7 +85,7 @@ namespace BackEnd.Controllers
         #region Modificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] RuedumModel entidad)
+        public JsonResult Put([FromBody] TarjetumModel entidad)
         {
             entidadDAL.Update(Convertir(entidad));
             return new JsonResult(entidad);
@@ -91,9 +97,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Ruedum entidad = new Ruedum
+            Tarjetum entidad = new Tarjetum
             {
-                RuedaId = id
+                TarjetaId = id
             };
             entidadDAL.Remove(entidad);
         }
