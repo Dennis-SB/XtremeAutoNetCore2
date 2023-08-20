@@ -7,26 +7,29 @@ namespace FrontEnd.Controllers
 {
     public class TarjetumController : Controller
     {
-        TarjetumHelper tarjetumHelper;
+        TarjetumHelper entidadHelper;
 
+        #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            tarjetumHelper = new TarjetumHelper();
-            List<TarjetumViewModel> list = tarjetumHelper.GetAll();
-
+            entidadHelper = new TarjetumHelper();
+            List<TarjetumViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
+        #endregion
 
+        #region Details
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-
-            tarjetumHelper = new TarjetumHelper();
-            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
-            return View(tarjetum);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
+        #endregion
 
+        #region Create
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -36,14 +39,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TarjetumViewModel tarjetum)
+        public ActionResult Create(TarjetumViewModel entidad)
         {
             try
             {
-                tarjetumHelper = new TarjetumHelper();
-                tarjetum = tarjetumHelper.Add(tarjetum);
-
-
+                entidadHelper = new TarjetumHelper();
+                entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,26 +52,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            tarjetumHelper = new TarjetumHelper();
-            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
-            return View(tarjetum);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TarjetumViewModel tarjetum)
+        public ActionResult Edit(TarjetumViewModel entidad)
         {
             try
             {
-                tarjetumHelper = new TarjetumHelper();
-                tarjetum = tarjetumHelper.Edit(tarjetum);
-
-
+                entidadHelper = new TarjetumHelper();
+                entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,26 +79,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-
-            tarjetumHelper = new TarjetumHelper();
-            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
-            return View(tarjetum);
+            entidadHelper = new TarjetumHelper();
+            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(TarjetumViewModel tarjetum)
+        public ActionResult Delete(TarjetumViewModel entidad)
         {
             try
             {
-
-                tarjetumHelper = new TarjetumHelper();
-                tarjetumHelper.Delete(tarjetum.TarjetaId);
+                entidadHelper = new TarjetumHelper();
+                entidadHelper.Delete(entidad.TarjetaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,5 +106,6 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

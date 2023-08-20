@@ -7,26 +7,29 @@ namespace FrontEnd.Controllers
 {
     public class ColorController : Controller
     {
-        ColorHelper colorHelper;
+        ColorHelper entidadHelper;
 
+        #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            colorHelper = new ColorHelper();
-            List<ColorViewModel> list = colorHelper.GetAll();
-
+            entidadHelper = new ColorHelper();
+            List<ColorViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
+        #endregion
 
+        #region Details
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-
-            colorHelper = new ColorHelper();
-            ColorViewModel color = colorHelper.GetByID(id);
-            return View(color);
+            entidadHelper = new ColorHelper();
+            ColorViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
+        #endregion
 
+        #region Create
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -36,14 +39,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ColorViewModel color)
+        public ActionResult Create(ColorViewModel entidad)
         {
             try
             {
-                colorHelper = new ColorHelper();
-                color = colorHelper.Add(color);
-
-
+                entidadHelper = new ColorHelper();
+                entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,26 +52,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            colorHelper = new ColorHelper();
-            ColorViewModel color = colorHelper.GetByID(id);
-            return View(color);
+            entidadHelper = new ColorHelper();
+            ColorViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ColorViewModel color)
+        public ActionResult Edit(ColorViewModel entidad)
         {
             try
             {
-                colorHelper = new ColorHelper();
-                color = colorHelper.Edit(color);
-
-
+                entidadHelper = new ColorHelper();
+                entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,26 +79,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-
-            colorHelper = new ColorHelper();
-            ColorViewModel color = colorHelper.GetByID(id);
-            return View(color);
+            entidadHelper = new ColorHelper();
+            ColorViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(ColorViewModel color)
+        public ActionResult Delete(ColorViewModel entidad)
         {
             try
             {
-
-                colorHelper = new ColorHelper();
-                colorHelper.Delete(color.ColorId);
+                entidadHelper = new ColorHelper();
+                entidadHelper.Delete(entidad.ColorId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,5 +106,6 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

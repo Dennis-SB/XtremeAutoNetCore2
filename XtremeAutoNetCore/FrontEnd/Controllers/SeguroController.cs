@@ -7,26 +7,29 @@ namespace FrontEnd.Controllers
 {
     public class SeguroController : Controller
     {
-        SeguroHelper seguroHelper;
+        SeguroHelper entidadHelper;
 
+        #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            seguroHelper = new SeguroHelper();
-            List<SeguroViewModel> list = seguroHelper.GetAll();
-
+            entidadHelper = new SeguroHelper();
+            List<SeguroViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
+        #endregion
 
+        #region Details
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            entidadHelper = new SeguroHelper();
+            SeguroViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
+        #endregion
 
+        #region Create
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -36,14 +39,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SeguroViewModel seguro)
+        public ActionResult Create(SeguroViewModel entidad)
         {
             try
             {
-                seguroHelper = new SeguroHelper();
-                seguro = seguroHelper.Add(seguro);
-
-
+                entidadHelper = new SeguroHelper();
+                entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,26 +52,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            entidadHelper = new SeguroHelper();
+            SeguroViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SeguroViewModel seguro)
+        public ActionResult Edit(SeguroViewModel entidad)
         {
             try
             {
-                seguroHelper = new SeguroHelper();
-                seguro = seguroHelper.Edit(seguro);
-
-
+                entidadHelper = new SeguroHelper();
+                entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,26 +79,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            entidadHelper = new SeguroHelper();
+            SeguroViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(SeguroViewModel seguro)
+        public ActionResult Delete(SeguroViewModel entidad)
         {
             try
             {
-
-                seguroHelper = new SeguroHelper();
-                seguroHelper.Delete(seguro.SeguroId);
+                entidadHelper = new SeguroHelper();
+                entidadHelper.Delete(entidad.SeguroId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,5 +106,6 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

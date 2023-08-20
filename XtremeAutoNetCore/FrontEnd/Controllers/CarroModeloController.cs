@@ -7,26 +7,29 @@ namespace FrontEnd.Controllers
 {
     public class CarroModeloController : Controller
     {
-        CarroModeloHelper carroModeloHelper;
+        CarroModeloHelper entidadHelper;
 
+        #region Index
         // GET: CategoryController
         public ActionResult Index()
         {
-            carroModeloHelper = new CarroModeloHelper();
-            List<CarroModeloViewModel> list = carroModeloHelper.GetAll();
-
+            entidadHelper = new CarroModeloHelper();
+            List<CarroModeloViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
+        #endregion
 
+        #region Details
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-
-            carroModeloHelper = new CarroModeloHelper();
-            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(id);
-            return View(carroModelo);
+            entidadHelper = new CarroModeloHelper();
+            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
+        #endregion
 
+        #region Create
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -36,14 +39,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CarroModeloViewModel carroModelo)
+        public ActionResult Create(CarroModeloViewModel entidad)
         {
             try
             {
-                carroModeloHelper = new CarroModeloHelper();
-                carroModelo = carroModeloHelper.Add(carroModelo);
-
-
+                entidadHelper = new CarroModeloHelper();
+                entidad = entidadHelper.Add(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,26 +52,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            carroModeloHelper = new CarroModeloHelper();
-            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(id);
-            return View(carroModelo);
+            entidadHelper = new CarroModeloHelper();
+            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarroModeloViewModel carroModelo)
+        public ActionResult Edit(CarroModeloViewModel entidad)
         {
             try
             {
-                carroModeloHelper = new CarroModeloHelper();
-                carroModelo = carroModeloHelper.Edit(carroModelo);
-
-
+                entidadHelper = new CarroModeloHelper();
+                entidad = entidadHelper.Edit(entidad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,26 +79,26 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-
-            carroModeloHelper = new CarroModeloHelper();
-            CarroModeloViewModel carroModelo = carroModeloHelper.GetByID(id);
-            return View(carroModelo);
+            entidadHelper = new CarroModeloHelper();
+            CarroModeloViewModel entidad = entidadHelper.GetByID(id);
+            return View(entidad);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(CarroModeloViewModel carroModelo)
+        public ActionResult Delete(CarroModeloViewModel entidad)
         {
             try
             {
-
-                carroModeloHelper = new CarroModeloHelper();
-                carroModeloHelper.Delete(carroModelo.CarroModeloId);
+                entidadHelper = new CarroModeloHelper();
+                entidadHelper.Delete(entidad.CarroModeloId);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,5 +106,6 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

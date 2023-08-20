@@ -12,7 +12,6 @@ namespace BackEnd.Controllers
     [ApiController]
     public class TarjetumController : Controller
     {
-
         private ITarjetumDAL entidadDAL;
 
         private TarjetumModel Convertir(Tarjetum entidad)
