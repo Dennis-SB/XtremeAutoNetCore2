@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class SeguroController : Controller
+    public class TarjetumController : Controller
     {
-        SeguroHelper seguroHelper;
+        TarjetumHelper tarjetumHelper;
 
         // GET: CategoryController
         public ActionResult Index()
         {
-            seguroHelper = new SeguroHelper();
-            List<SeguroViewModel> list = seguroHelper.GetAll();
+            tarjetumHelper = new TarjetumHelper();
+            List<TarjetumViewModel> list = tarjetumHelper.GetAll();
 
             return View(list);
         }
@@ -22,9 +22,9 @@ namespace FrontEnd.Controllers
         public ActionResult Details(int id)
         {
 
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            tarjetumHelper = new TarjetumHelper();
+            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
+            return View(tarjetum);
         }
 
         // GET: CategoryController/Create
@@ -36,12 +36,12 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SeguroViewModel seguro)
+        public ActionResult Create(TarjetumViewModel tarjetum)
         {
             try
             {
-                seguroHelper = new SeguroHelper();
-                seguro = seguroHelper.Add(seguro);
+                tarjetumHelper = new TarjetumHelper();
+                tarjetum = tarjetumHelper.Add(tarjetum);
 
 
                 return RedirectToAction(nameof(Index));
@@ -55,20 +55,20 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            tarjetumHelper = new TarjetumHelper();
+            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
+            return View(tarjetum);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SeguroViewModel seguro)
+        public ActionResult Edit(TarjetumViewModel tarjetum)
         {
             try
             {
-                seguroHelper = new SeguroHelper();
-                seguro = seguroHelper.Edit(seguro);
+                tarjetumHelper = new TarjetumHelper();
+                tarjetum = tarjetumHelper.Edit(tarjetum);
 
 
                 return RedirectToAction(nameof(Index));
@@ -83,21 +83,21 @@ namespace FrontEnd.Controllers
         public ActionResult Delete(int id)
         {
 
-            seguroHelper = new SeguroHelper();
-            SeguroViewModel seguro = seguroHelper.GetByID(id);
-            return View(seguro);
+            tarjetumHelper = new TarjetumHelper();
+            TarjetumViewModel tarjetum = tarjetumHelper.GetByID(id);
+            return View(tarjetum);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(SeguroViewModel seguro)
+        public ActionResult Delete(TarjetumViewModel tarjetum)
         {
             try
             {
 
-                seguroHelper = new SeguroHelper();
-                seguroHelper.Delete(seguro.SeguroId);
+                tarjetumHelper = new TarjetumHelper();
+                tarjetumHelper.Delete(tarjetum.TarjetaId);
                 return RedirectToAction(nameof(Index));
             }
             catch
