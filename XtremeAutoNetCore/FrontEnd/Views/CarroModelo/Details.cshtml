@@ -4,69 +4,121 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<!--================Single Product Area =================-->
+<div class="product_image_area">
+	<div class="container">
+		<div class="row s_product_inner">
+		
+				<div class="col-lg-6">
 
-<div>
-    <h4>CarroModeloViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarroModeloId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CarroModeloId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Disponible)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Disponible)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tipo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Marca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Marca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Modelo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Modelo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-    </dl>
+					<div class="single-product">
+						<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
+						<!-- Html.DisplayFor(modelItem => item.Imagen)-->
+					</div>
+
+				</div>
+				<div class="col-lg-5 offset-lg-1">
+					<div class="s_product_text">
+						<h3>@Html.DisplayFor(model => model.Modelo)</h3>
+						<h2>@Html.DisplayFor(model => model.Precio)</h2>
+
+						<!--	<div class="wheels_selection">
+								<button class="round-btn" id="wheel1">
+									<img class="round-img" src="img/product/ruedaplaceholder.jpg" alt="">
+								</button>
+								<button class="round-btn" id="wheel2">
+									<img class="round-img" src="img/product/ruedaplaceholder.jpg" alt="">
+								</button>
+								</div> -->
+
+						<div class="card_area d-flex align-items-center">
+
+							<a class="primary-btn" href="#">Agregar al Carrito de Compras</a>
+						</div>
+
+					</div>
+				</div>
+		</div>
+	</div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CarroModeloId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+<!--================End Single Product Area =================-->
+<!--================Product Description Area =================-->
+<section class="product_description_area">
+	<div class="container">
+	
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Descripcion</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+					   aria-selected="false">Especificaciones</a>
+				</li>
+
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<p>
+					@Html.DisplayFor(model => model.Descripcion)
+					</p>
+
+				</div>
+				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>
+										<h5>ID</h5>
+									</td>
+									<td>
+									<h5>@Html.DisplayFor(model => model.CarroModeloId)</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Marca</h5>
+									</td>
+									<td>
+									<h5>@Html.DisplayFor(model => model.Marca)</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Disponible</h5>
+									</td>
+									<td>
+									<h5>@Html.DisplayFor(model => model.Disponible)</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Tipo</h5>
+									</td>
+									<td>
+									<h5>@Html.DisplayFor(model => model.Tipo)</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Cantidad</h5>
+									</td>
+									<td>
+										<h5>@Html.DisplayFor(model => model.Cantidad)</h5>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					<div class="card_area d-flex align-items-center">
+						
+							@Html.ActionLink("Editar", "Edit", new { id=Model.CarroModeloId }) |
+
+						<a asp-action="Index" class="genric-btn primary small">Regresar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+	</div>
+
+</section>
