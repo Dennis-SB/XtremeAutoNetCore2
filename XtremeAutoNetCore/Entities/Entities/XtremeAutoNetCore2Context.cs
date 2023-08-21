@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -9,6 +10,8 @@ namespace Entities.Entities
     {
         public XtremeAutoNetCore2Context()
         {
+            var optionBuilder = new DbContextOptionsBuilder<XtremeAutoNetCore2Context>();
+            optionBuilder.UseSqlServer(Util.ConnectionString);
         }
 
         public XtremeAutoNetCore2Context(DbContextOptions<XtremeAutoNetCore2Context> options)
@@ -29,15 +32,13 @@ namespace Entities.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=XtremeAutoNetCore2;Integrated Security=True;Trusted_Connection=True;");
-            }
+            optionsBuilder.UseSqlServer(Util.ConnectionString);
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CarroModelo>(entity =>
             {
                 entity.ToTable("CarroModelo");

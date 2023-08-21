@@ -1,4 +1,15 @@
+//using BackEnd.Middleware;
+using Entities.Entities;
+using Entities.Utilities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+#region Connection String
+builder.Services.AddDbContext<XtremeAutoNetCore2Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+Util.ConnectionString = connString;
+#endregion
 
 // Add services to the container.
 
@@ -17,7 +28,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
