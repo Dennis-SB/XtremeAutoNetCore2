@@ -10,42 +10,44 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TarjetumController : Controller
+    public class TransaccionController : Controller
     {
-        private ITarjetumDAL entidadDAL;
+        private ITransaccionDAL entidadDAL;
 
-        private TarjetumModel Convertir(Tarjetum entidad)
+        private TransaccionModel Convertir(Transaccion entidad)
         {
-            return new TarjetumModel
+            return new TransaccionModel
             {
+                TransaccionId = entidad.TransaccionId,
+                VentaId = entidad.VentaId,
                 TarjetaId = entidad.TarjetaId,
-                UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                FechaTransaccion = entidad.FechaTransaccion,
+                FechaCorte = entidad.FechaCorte,
+                InteresesMorosidad = entidad.InteresesMorosidad,
+                Pagado = entidad.Pagado,
+                Precio = entidad.Precio
             };
         }
 
-        private Tarjetum Convertir(TarjetumModel entidad)
+        private Transaccion Convertir(TransaccionModel entidad)
         {
-            return new Tarjetum
+            return new Transaccion
             {
+                TransaccionId = entidad.TransaccionId,
+                VentaId = entidad.VentaId,
                 TarjetaId = entidad.TarjetaId,
-                UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                FechaTransaccion = entidad.FechaTransaccion,
+                FechaCorte = entidad.FechaCorte,
+                InteresesMorosidad = entidad.InteresesMorosidad,
+                Pagado = entidad.Pagado,
+                Precio = entidad.Precio
             };
         }
 
         #region Constructores
-        public TarjetumController()
+        public TransaccionController()
         {
-            entidadDAL = new TarjetumDALImpl();
+            entidadDAL = new TransaccionDALImpl();
         }
         #endregion
 
@@ -54,8 +56,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Tarjetum> entidades = entidadDAL.GetAll();
-            List<TarjetumModel> models = new List<TarjetumModel>();
+            IEnumerable<Transaccion> entidades = entidadDAL.GetAll();
+            List<TransaccionModel> models = new List<TransaccionModel>();
             foreach (var entidad in entidades)
             {
                 models.Add(Convertir(entidad));
@@ -67,7 +69,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Tarjetum entidad = entidadDAL.Get(id);
+            Transaccion entidad = entidadDAL.Get(id);
             return new JsonResult(Convertir(entidad));
         }
         #endregion
@@ -75,7 +77,7 @@ namespace BackEnd.Controllers
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] TarjetumModel entidad)
+        public JsonResult Post([FromBody] TransaccionModel entidad)
         {
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
@@ -85,7 +87,7 @@ namespace BackEnd.Controllers
         #region Modificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] TarjetumModel entidad)
+        public JsonResult Put([FromBody] TransaccionModel entidad)
         {
             entidadDAL.Update(Convertir(entidad));
             return new JsonResult(entidad);
@@ -97,9 +99,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Tarjetum entidad = new Tarjetum
+            Transaccion entidad = new Transaccion
             {
-                TarjetaId = id
+                TransaccionId = id
             };
             entidadDAL.Remove(entidad);
         }

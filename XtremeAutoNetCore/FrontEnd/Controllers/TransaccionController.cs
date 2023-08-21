@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class TarjetumController : Controller
+    public class TransaccionController : Controller
     {
-        private TarjetumHelper entidadHelper;
-        private UsuarioHelper enlace1Helper;
+        private TransaccionHelper entidadHelper;
+        private VentumHelper enlace1Helper;
+        private TarjetumHelper enlace2Helper;
 
         #region Constructores
-        public TarjetumController()
+        public TransaccionController()
         {
-            entidadHelper = new TarjetumHelper();
-            enlace1Helper = new UsuarioHelper();
+            entidadHelper = new TransaccionHelper();
+            enlace1Helper = new VentumHelper();
+            enlace2Helper = new TarjetumHelper();
         }
         #endregion
 
@@ -22,7 +24,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            List<TarjetumViewModel> list = entidadHelper.GetAll();
+            List<TransaccionViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
         #endregion
@@ -31,7 +33,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            TransaccionViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
         #endregion
@@ -40,15 +42,16 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            TarjetumViewModel entidad = new TarjetumViewModel();
-            entidad.Usuarios = enlace1Helper.GetAll();
+            TransaccionViewModel entidad = new TransaccionViewModel();
+            entidad.Ventas = enlace1Helper.GetAll();
+            entidad.Tarjetas = enlace2Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TarjetumViewModel entidad)
+        public ActionResult Create(TransaccionViewModel entidad)
         {
             try
             {
@@ -66,15 +69,16 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
-            entidad.Usuarios = enlace1Helper.GetAll();
+            TransaccionViewModel entidad = entidadHelper.GetByID(id);
+            entidad.Ventas = enlace1Helper.GetAll();
+            entidad.Tarjetas = enlace2Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TarjetumViewModel entidad)
+        public ActionResult Edit(TransaccionViewModel entidad)
         {
             try
             {
@@ -92,18 +96,18 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            TransaccionViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(TarjetumViewModel entidad)
+        public ActionResult Delete(TransaccionViewModel entidad)
         {
             try
             {
-                entidadHelper.Delete(entidad.TarjetaId);
+                entidadHelper.Delete(entidad.VentaId);
                 return RedirectToAction(nameof(Index));
             }
             catch

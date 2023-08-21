@@ -10,42 +10,44 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TarjetumController : Controller
+    public class VentumController : Controller
     {
-        private ITarjetumDAL entidadDAL;
+        private IVentumDAL entidadDAL;
 
-        private TarjetumModel Convertir(Tarjetum entidad)
+        private VentumModel Convertir(Ventum entidad)
         {
-            return new TarjetumModel
+            return new VentumModel
             {
-                TarjetaId = entidad.TarjetaId,
+                VentaId = entidad.VentaId,
                 UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                CarroVendidoId = entidad.CarroVendidoId,
+                Total = entidad.Total,
+                Meses = entidad.Meses,
+                Intereses = entidad.Intereses,
+                SaldoPendiente = entidad.SaldoPendiente,
+                SaldoAbonado = entidad.SaldoAbonado
             };
         }
 
-        private Tarjetum Convertir(TarjetumModel entidad)
+        private Ventum Convertir(VentumModel entidad)
         {
-            return new Tarjetum
+            return new Ventum
             {
-                TarjetaId = entidad.TarjetaId,
+                VentaId = entidad.VentaId,
                 UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                CarroVendidoId = entidad.CarroVendidoId,
+                Total = entidad.Total,
+                Meses = entidad.Meses,
+                Intereses = entidad.Intereses,
+                SaldoPendiente = entidad.SaldoPendiente,
+                SaldoAbonado = entidad.SaldoAbonado
             };
         }
 
         #region Constructores
-        public TarjetumController()
+        public VentumController()
         {
-            entidadDAL = new TarjetumDALImpl();
+            entidadDAL = new VentumDALImpl();
         }
         #endregion
 
@@ -54,8 +56,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Tarjetum> entidades = entidadDAL.GetAll();
-            List<TarjetumModel> models = new List<TarjetumModel>();
+            IEnumerable<Ventum> entidades = entidadDAL.GetAll();
+            List<VentumModel> models = new List<VentumModel>();
             foreach (var entidad in entidades)
             {
                 models.Add(Convertir(entidad));
@@ -67,7 +69,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Tarjetum entidad = entidadDAL.Get(id);
+            Ventum entidad = entidadDAL.Get(id);
             return new JsonResult(Convertir(entidad));
         }
         #endregion
@@ -75,7 +77,7 @@ namespace BackEnd.Controllers
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] TarjetumModel entidad)
+        public JsonResult Post([FromBody] VentumModel entidad)
         {
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
@@ -85,7 +87,7 @@ namespace BackEnd.Controllers
         #region Modificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] TarjetumModel entidad)
+        public JsonResult Put([FromBody] VentumModel entidad)
         {
             entidadDAL.Update(Convertir(entidad));
             return new JsonResult(entidad);
@@ -97,9 +99,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Tarjetum entidad = new Tarjetum
+            Ventum entidad = new Ventum
             {
-                TarjetaId = id
+                UsuarioId = id
             };
             entidadDAL.Remove(entidad);
         }

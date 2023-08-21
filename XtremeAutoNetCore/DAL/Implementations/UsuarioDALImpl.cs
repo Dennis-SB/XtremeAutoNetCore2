@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public class TarjetumDALImpl : ITarjetumDAL
+    public class UsuarioDALImpl : IUsuarioDAL
     {
         private XtremeAutoNetCore2Context Context;
-        private UnidadDeTrabajo<Tarjetum> unidad;
+        private UnidadDeTrabajo<Usuario> unidad;
 
-        public bool Add(Tarjetum entidad)
+        public bool Add(Usuario entidad)
         {
             try
             {
-                using (unidad = new UnidadDeTrabajo<Tarjetum>(new XtremeAutoNetCore2Context()))
+                using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCore2Context()))
                 {
                     unidad.genericDAL.Add(entidad);
                     unidad.Complete();
@@ -31,41 +31,42 @@ namespace DAL.Implementations
             }
         }
 
-        public void AddRange(IEnumerable<Tarjetum> entidades)
+        public void AddRange(IEnumerable<Usuario> entidades)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Tarjetum> Find(Expression<Func<Tarjetum, bool>> predicate)
+        public IEnumerable<Usuario> Find(Expression<Func<Usuario, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Tarjetum Get(int id)
+        public Usuario Get(int id)
         {
-            Tarjetum entidad = null;
-            using (unidad = new UnidadDeTrabajo<Tarjetum>(new XtremeAutoNetCore2Context()))
+            Usuario entidad = null;
+            using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCore2Context()))
             {
                 entidad = unidad.genericDAL.Get(id);
             }
+
             return entidad;
         }
 
-        public IEnumerable<Tarjetum> GetAll()
+        public IEnumerable<Usuario> GetAll()
         {
-            IEnumerable<Tarjetum> entidades = null;
-            using (unidad = new UnidadDeTrabajo<Tarjetum>(new XtremeAutoNetCore2Context()))
+            IEnumerable<Usuario> entidades = null;
+            using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCore2Context()))
             {
                 entidades = unidad.genericDAL.GetAll();
             }
             return entidades;
         }
 
-        public bool Remove(Tarjetum entidad)
+        public bool Remove(Usuario entidad)
         {
             try
             {
-                using (unidad = new UnidadDeTrabajo<Tarjetum>(new XtremeAutoNetCore2Context()))
+                using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCore2Context()))
                 {
                     unidad.genericDAL.Remove(entidad);
                     unidad.Complete();
@@ -78,21 +79,21 @@ namespace DAL.Implementations
             }
         }
 
-        public void RemoveRange(IEnumerable<Tarjetum> entidades)
+        public void RemoveRange(IEnumerable<Usuario> entidades)
         {
             throw new NotImplementedException();
         }
 
-        public Tarjetum SingleOrDefault(Expression<Func<Tarjetum, bool>> predicate)
+        public Usuario SingleOrDefault(Expression<Func<Usuario, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Tarjetum entidad)
+        public bool Update(Usuario entidad)
         {
             try
             {
-                using (unidad = new UnidadDeTrabajo<Tarjetum>(new XtremeAutoNetCore2Context()))
+                using (unidad = new UnidadDeTrabajo<Usuario>(new XtremeAutoNetCore2Context()))
                 {
                     unidad.genericDAL.Update(entidad);
                     unidad.Complete();

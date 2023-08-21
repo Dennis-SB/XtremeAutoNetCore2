@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FrontEnd.Models.VentumViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VentaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarroVendidoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intereses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaldoPendiente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaldoAbonado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VentaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarroVendidoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Intereses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaldoPendiente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaldoAbonado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.VentaId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.VentaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.VentaId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

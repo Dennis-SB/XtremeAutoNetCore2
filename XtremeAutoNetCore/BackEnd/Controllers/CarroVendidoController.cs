@@ -10,42 +10,40 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TarjetumController : Controller
+    public class CarroVendidoController : Controller
     {
-        private ITarjetumDAL entidadDAL;
+        private ICarroVendidoDAL entidadDAL;
 
-        private TarjetumModel Convertir(Tarjetum entidad)
+        private CarroVendidoModel Convertir(CarroVendido entidad)
         {
-            return new TarjetumModel
+            return new CarroVendidoModel
             {
-                TarjetaId = entidad.TarjetaId,
-                UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                CarroVendidoId = entidad.CarroVendidoId,
+                RuedaId = entidad.RuedaId,
+                ColorId = entidad.ColorId,
+                CarroModeloId = entidad.CarroModeloId,
+                SeguroId = entidad.SeguroId,
+                PrecioTotal = entidad.PrecioTotal
             };
         }
 
-        private Tarjetum Convertir(TarjetumModel entidad)
+        private CarroVendido Convertir(CarroVendidoModel entidad)
         {
-            return new Tarjetum
+            return new CarroVendido
             {
-                TarjetaId = entidad.TarjetaId,
-                UsuarioId = entidad.UsuarioId,
-                Nombre = entidad.Nombre,
-                NumeroDeTarjeta = entidad.NumeroDeTarjeta,
-                Cvv = entidad.Cvv,
-                FechaVencimiento = entidad.FechaVencimiento,
-                LockoutEnabled = entidad.LockoutEnabled
+                CarroVendidoId = entidad.CarroVendidoId,
+                RuedaId = entidad.RuedaId,
+                ColorId = entidad.ColorId,
+                CarroModeloId = entidad.CarroModeloId,
+                SeguroId = entidad.SeguroId,
+                PrecioTotal = entidad.PrecioTotal
             };
         }
 
         #region Constructores
-        public TarjetumController()
+        public CarroVendidoController()
         {
-            entidadDAL = new TarjetumDALImpl();
+            entidadDAL = new CarroVendidoDALImpl();
         }
         #endregion
 
@@ -54,8 +52,8 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Tarjetum> entidades = entidadDAL.GetAll();
-            List<TarjetumModel> models = new List<TarjetumModel>();
+            IEnumerable<CarroVendido> entidades = entidadDAL.GetAll();
+            List<CarroVendidoModel> models = new List<CarroVendidoModel>();
             foreach (var entidad in entidades)
             {
                 models.Add(Convertir(entidad));
@@ -67,7 +65,7 @@ namespace BackEnd.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Tarjetum entidad = entidadDAL.Get(id);
+            CarroVendido entidad = entidadDAL.Get(id);
             return new JsonResult(Convertir(entidad));
         }
         #endregion
@@ -75,7 +73,7 @@ namespace BackEnd.Controllers
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] TarjetumModel entidad)
+        public JsonResult Post([FromBody] CarroVendidoModel entidad)
         {
             entidadDAL.Add(Convertir(entidad));
             return new JsonResult(entidad);
@@ -85,7 +83,7 @@ namespace BackEnd.Controllers
         #region Modificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] TarjetumModel entidad)
+        public JsonResult Put([FromBody] CarroVendidoModel entidad)
         {
             entidadDAL.Update(Convertir(entidad));
             return new JsonResult(entidad);
@@ -97,9 +95,9 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Tarjetum entidad = new Tarjetum
+            CarroVendido entidad = new CarroVendido
             {
-                TarjetaId = id
+                CarroVendidoId = id
             };
             entidadDAL.Remove(entidad);
         }

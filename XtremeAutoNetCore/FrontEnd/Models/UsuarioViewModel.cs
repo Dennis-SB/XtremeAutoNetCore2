@@ -13,6 +13,7 @@
         public string Telefono { get; set; } = null!;
         public string Username { get; set; } = null!;
         public int RolId { get; set; }
+        public IEnumerable<RolViewModel> Roles { get; set; }
         public bool LockoutEnabled { get; set; }
         public int FailedAttemptsCount { get; set; }
         public DateTime LockoutEndDateUtc { get; set; }

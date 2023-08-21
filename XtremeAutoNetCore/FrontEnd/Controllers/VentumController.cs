@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class TarjetumController : Controller
+    public class VentumController : Controller
     {
-        private TarjetumHelper entidadHelper;
+        private VentumHelper entidadHelper;
         private UsuarioHelper enlace1Helper;
+        private CarroVendidoHelper enlace2Helper;
 
         #region Constructores
-        public TarjetumController()
+        public VentumController()
         {
-            entidadHelper = new TarjetumHelper();
+            entidadHelper = new VentumHelper();
             enlace1Helper = new UsuarioHelper();
+            enlace2Helper = new CarroVendidoHelper();
         }
         #endregion
 
@@ -22,7 +24,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            List<TarjetumViewModel> list = entidadHelper.GetAll();
+            List<VentumViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
         #endregion
@@ -31,7 +33,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            VentumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
         #endregion
@@ -40,15 +42,16 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            TarjetumViewModel entidad = new TarjetumViewModel();
+            VentumViewModel entidad = new VentumViewModel();
             entidad.Usuarios = enlace1Helper.GetAll();
+            entidad.CarroVendidos = enlace2Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TarjetumViewModel entidad)
+        public ActionResult Create(VentumViewModel entidad)
         {
             try
             {
@@ -66,15 +69,16 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            VentumViewModel entidad = entidadHelper.GetByID(id);
             entidad.Usuarios = enlace1Helper.GetAll();
+            entidad.CarroVendidos = enlace2Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TarjetumViewModel entidad)
+        public ActionResult Edit(VentumViewModel entidad)
         {
             try
             {
@@ -92,18 +96,18 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            VentumViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(TarjetumViewModel entidad)
+        public ActionResult Delete(VentumViewModel entidad)
         {
             try
             {
-                entidadHelper.Delete(entidad.TarjetaId);
+                entidadHelper.Delete(entidad.VentaId);
                 return RedirectToAction(nameof(Index));
             }
             catch

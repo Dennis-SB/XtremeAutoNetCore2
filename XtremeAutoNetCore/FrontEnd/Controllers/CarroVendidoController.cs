@@ -5,16 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class TarjetumController : Controller
+    public class CarroVendidoController : Controller
     {
-        private TarjetumHelper entidadHelper;
-        private UsuarioHelper enlace1Helper;
+        private CarroVendidoHelper entidadHelper;
+        private RuedumHelper enlace1Helper;
+        private ColorHelper enlace2Helper;
+        private CarroModeloHelper enlace3Helper;
+        private SeguroHelper enlace4Helper;
 
         #region Constructores
-        public TarjetumController()
+        public CarroVendidoController()
         {
-            entidadHelper = new TarjetumHelper();
-            enlace1Helper = new UsuarioHelper();
+            entidadHelper = new CarroVendidoHelper();
+            enlace1Helper = new RuedumHelper();
+            enlace2Helper = new ColorHelper();
+            enlace3Helper = new CarroModeloHelper();
+            enlace4Helper = new SeguroHelper();
         }
         #endregion
 
@@ -22,7 +28,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            List<TarjetumViewModel> list = entidadHelper.GetAll();
+            List<CarroVendidoViewModel> list = entidadHelper.GetAll();
             return View(list);
         }
         #endregion
@@ -31,7 +37,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            CarroVendidoViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
         #endregion
@@ -40,15 +46,18 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            TarjetumViewModel entidad = new TarjetumViewModel();
-            entidad.Usuarios = enlace1Helper.GetAll();
+            CarroVendidoViewModel entidad = new CarroVendidoViewModel();
+            entidad.Ruedas = enlace1Helper.GetAll();
+            entidad.Colores = enlace2Helper.GetAll();
+            entidad.CarroModelos = enlace3Helper.GetAll();
+            entidad.Seguros = enlace4Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TarjetumViewModel entidad)
+        public ActionResult Create(CarroVendidoViewModel entidad)
         {
             try
             {
@@ -66,15 +75,18 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
-            entidad.Usuarios = enlace1Helper.GetAll();
+            CarroVendidoViewModel entidad = entidadHelper.GetByID(id);
+            entidad.Ruedas = enlace1Helper.GetAll();
+            entidad.Colores = enlace2Helper.GetAll();
+            entidad.CarroModelos = enlace3Helper.GetAll();
+            entidad.Seguros = enlace4Helper.GetAll();
             return View(entidad);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TarjetumViewModel entidad)
+        public ActionResult Edit(CarroVendidoViewModel entidad)
         {
             try
             {
@@ -92,18 +104,18 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            TarjetumViewModel entidad = entidadHelper.GetByID(id);
+            CarroVendidoViewModel entidad = entidadHelper.GetByID(id);
             return View(entidad);
         }
 
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(TarjetumViewModel entidad)
+        public ActionResult Delete(CarroVendidoViewModel entidad)
         {
             try
             {
-                entidadHelper.Delete(entidad.TarjetaId);
+                entidadHelper.Delete(entidad.CarroVendidoId);
                 return RedirectToAction(nameof(Index));
             }
             catch
