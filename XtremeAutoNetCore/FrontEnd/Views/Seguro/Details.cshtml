@@ -4,39 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
-    <h4>SeguroViewModel</h4>
+    <h4>Información sobre el Seguro</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-md-6 form-group p_star">
             @Html.DisplayNameFor(model => model.SeguroId)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-md-6 form-group p_star">
             @Html.DisplayFor(model => model.SeguroId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-md-6 form-group p_star">
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-md-6 form-group p_star">
             @Html.DisplayFor(model => model.Nombre)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-md-6 form-group p_star">
             @Html.DisplayNameFor(model => model.Plazo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-md-6 form-group p_star">
             @Html.DisplayFor(model => model.Plazo)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-md-6 form-group p_star">
             @Html.DisplayNameFor(model => model.Precio)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-md-6 form-group p_star">
             @Html.DisplayFor(model => model.Precio)
         </dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SeguroId }) |
-    <a asp-action="Index">Back to List</a>
+<div class="genric-btn success-border circle arrow">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.SeguroId})
 </div>
+<a asp-action="Index" class="genric-btn primary small">Regresar</a>

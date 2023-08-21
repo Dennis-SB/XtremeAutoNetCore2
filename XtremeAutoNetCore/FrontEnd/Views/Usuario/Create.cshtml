@@ -4,89 +4,90 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crear Usuario</h1>
 
-<h4>UsuarioViewModel</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(Model=>Model.UsuarioId)
-            <div class="form-group">
+           
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Apellido" class="control-label"></label>
                 <input asp-for="Apellido" class="form-control" />
                 <span asp-validation-for="Apellido" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Salario" class="control-label"></label>
                 <input asp-for="Salario" class="form-control" />
                 <span asp-validation-for="Salario" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Cedula" class="control-label"></label>
                 <input asp-for="Cedula" class="form-control" />
                 <span asp-validation-for="Cedula" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="PasswordHash" class="control-label"></label>
                 <input asp-for="PasswordHash" class="form-control" />
                 <span asp-validation-for="PasswordHash" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="SecurityStamp" class="control-label"></label>
                 <input asp-for="SecurityStamp" class="form-control" />
                 <span asp-validation-for="SecurityStamp" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Telefono" class="control-label"></label>
                 <input asp-for="Telefono" class="form-control" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="Username" class="control-label"></label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 col-md-6 form-group p_star p_star">
                 <label asp-for="RolId" class="control-label"></label>
                 @Html.DropDownListFor(model=>model.RolId, new SelectList(Model.Roles,"RolId","Nombre")," --- Seleccionar ---")
                 <span asp-validation-for="RolId" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="col-md-6 form-group p_star form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="LockoutEnabled" /> @Html.DisplayNameFor(model => model.LockoutEnabled)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="FailedAttemptsCount" class="control-label"></label>
                 <input asp-for="FailedAttemptsCount" class="form-control" />
                 <span asp-validation-for="FailedAttemptsCount" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-6 form-group p_star">
                 <label asp-for="LockoutEndDateUtc" class="control-label"></label>
                 <input asp-for="LockoutEndDateUtc" class="form-control" />
                 <span asp-validation-for="LockoutEndDateUtc" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="col-md-6 form-group p_star">
+                <input type="submit" value="Agregar" class="genric-btn success-border circle arrow" />
             </div>
         </form>
     </div>
 </div>
 
+
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="genric-btn primary small">Regresar</a>
 </div>
 
 @section Scripts {
