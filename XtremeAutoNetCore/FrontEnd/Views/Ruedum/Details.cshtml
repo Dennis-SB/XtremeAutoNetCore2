@@ -4,39 +4,32 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles de las Ruedas</h1>
+<h4>Ruedas</h4>
+
+<div class="product_image_area">
+	<div class="container">
+		<div class="row s_product_inner">
+
+			<div class="col-lg-6">
+
+				<div class="single-product">
+					<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
+					<!--Html.DisplayFor(model => model.Imagen)-->
+				</div>
+			</div>
+			<div class="col-lg-5 offset-lg-1">
+				<div class="s_product_text">
+					<h3>@Html.DisplayFor(model => model.RuedaId)</h3>
+					<h2> @Html.DisplayFor(model => model.Nombre)</h2>
+					<h2> @Html.DisplayFor(model => model.Precio)</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div>
-    <h4>RuedumViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RuedaId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RuedaId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RuedaId }) |
-    <a asp-action="Index">Back to List</a>
+	@Html.ActionLink("Editar", "Edit", new { id = Model.RuedaId }) |
+	<a asp-action="Index">Regresar</a>
 </div>
