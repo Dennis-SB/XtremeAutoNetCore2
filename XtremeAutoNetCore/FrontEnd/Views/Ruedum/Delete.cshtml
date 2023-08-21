@@ -40,7 +40,7 @@
     <form asp-action="Delete">
         @Html.HiddenFor(Model=>Model.RuedaId)
         <input type="submit" value="Eliminar" class="genric-btn danger circle" />
-
+        <a asp-action="Index" class="genric-btn primary small">Regresar</a>
     </form>
-    <a asp-action="Index" class="genric-btn primary small">Regresar</a>
+   
 </div>

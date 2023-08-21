@@ -4,11 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Registro de autos vendidos</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -30,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PrecioTotal)
             </th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -54,12 +55,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrecioTotal)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CarroVendidoId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.CarroVendidoId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.CarroVendidoId })
-            </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.CarroVendidoId }, new { @class = "genric-btn success circle" })
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.CarroVendidoId }, new { @class = "genric-btn info circle" })
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.CarroVendidoId }, new { @class = "genric-btn danger circle" })
+                </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="genric-btn primary circle arrow">
+        Agregar CarroVendido <span class="lnr lnr-arrow-right"></span>
+    </a>
+</p>

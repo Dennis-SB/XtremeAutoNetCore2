@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles de la Transaccion</h1>
 
 <div>
-    <h4>TransaccionViewModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -60,7 +59,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TransaccionId }) |
-    <a asp-action="Index">Back to List</a>
+<div class="genric-btn success-border circle arrow">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.TransaccionId})
 </div>
+<a asp-action="Index" class="genric-btn primary small">Regresar</a>

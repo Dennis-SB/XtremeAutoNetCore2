@@ -4,23 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Observa las Ventas</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.VentaId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarroVendidoId)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
@@ -37,20 +26,15 @@
                 @Html.DisplayNameFor(model => model.SaldoAbonado)
             </th>
             <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VentaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarroVendidoId)
-            </td>
+         
             <td>
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
@@ -66,12 +50,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SaldoAbonado)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.VentaId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.VentaId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.VentaId })
-            </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.VentaId }, new { @class = "genric-btn success circle" })
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.VentaId }, new { @class = "genric-btn info circle" })
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.VentaId }, new { @class = "genric-btn danger circle" })
+                </td>
         </tr>
 }
     </tbody>
 </table>
+
+<p>
+    <a asp-action="Create" class="genric-btn primary circle arrow">
+        Agregar Venta <span class="lnr lnr-arrow-right"></span>
+    </a>
+</p>
