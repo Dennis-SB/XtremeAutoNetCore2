@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Authentication;
 using Entities.Utilities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Entities
 {
-    public partial class XtremeAutoNetCore2Context : DbContext
-    {
+    public partial class XtremeAutoNetCore2Context : IdentityDbContext<ApplicationUser>  //DbContext
+	{
         public XtremeAutoNetCore2Context()
         {
             var optionBuilder = new DbContextOptionsBuilder<XtremeAutoNetCore2Context>();
