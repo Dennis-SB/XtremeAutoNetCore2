@@ -1,0 +1,9 @@
+﻿@model FrontEnd.Models.ColorViewModel
+
+
+@{
+    if (!string.IsNullOrEmpty(Model.Imagen))
+    {
+        <img src="data:image/jpg;base64,@Model.Imagen" width="200" height="200" />
+    }
+}

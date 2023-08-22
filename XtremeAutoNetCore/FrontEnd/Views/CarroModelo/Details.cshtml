@@ -12,8 +12,9 @@
 				<div class="col-lg-6">
 
 					<div class="single-product">
-						<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
-						<!-- Html.DisplayFor(modelItem => item.Imagen)-->
+					<!--	<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
+						 Html.DisplayFor(modelItem => item.Imagen)-->
+					<partial name="_CarroModeloImage" model="Model" />
 					</div>
 
 				</div>
@@ -115,6 +116,7 @@
 
 						<a asp-action="Index" class="genric-btn primary small">Regresar</a>
 						</div>
+					@Html.ActionLink("Subir Imagen", "UploadImage", new { id=Model.CarroModeloId })
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,36 @@
+﻿@model FrontEnd.Models.CarroModeloViewModel
+
+@{
+    ViewData["Title"] = "UploadImage";
+}
+
+<h1>Subir imagen del Auto</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(Model=>Model.CarroModeloId)
+
+            <div class="form-group">
+                <input type="file" asp-for="Imagen" class="form-control" name="files" />
+                <span asp-validation-for="Imagen" class="text-danger"></span>
+            </div>
+
+            <partial name="_CarroModeloImage" model="Model" />
+
+            <div class="col-md-6 form-group p_star">
+                <input type="submit" value="Guardar" class="genric-btn success-border circle arrow" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="genric-btn primary small">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

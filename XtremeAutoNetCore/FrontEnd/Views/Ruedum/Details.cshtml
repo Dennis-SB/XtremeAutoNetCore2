@@ -14,8 +14,9 @@
 			<div class="col-lg-6">
 
 				<div class="single-product">
-					<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
-					<!--Html.DisplayFor(model => model.Imagen)-->
+					<!--<img class="img-fluid" src="img/product/carroplaceholder.jpg" alt="">
+					Html.DisplayFor(model => model.Imagen)-->
+					<partial name="_RuedumImage" model="Model" />
 				</div>
 			</div>
 			<div class="col-lg-5 offset-lg-1">
@@ -33,3 +34,5 @@
 	@Html.ActionLink("Editar", "Edit", new { id = Model.RuedaId})
 </div>
 <a asp-action="Index" class="genric-btn primary small">Regresar</a>
+
+@Html.ActionLink("Subir Imagen", "UploadImage", new { id=Model.RuedaId })
