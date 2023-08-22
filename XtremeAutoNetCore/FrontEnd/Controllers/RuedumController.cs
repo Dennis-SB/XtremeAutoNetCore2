@@ -106,6 +106,47 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
-        #endregion
-    }
+		#endregion
+
+		#region Imagen
+		public ActionResult UploadImage(int id)
+		{
+			entidadHelper = new RuedumHelper();
+			RuedumViewModel entidad = entidadHelper.GetByID(id);
+			return View(entidad);
+		}
+
+
+		[HttpPost]
+		public ActionResult UploadImage(RuedumViewModel entidad, List<IFormFile> files)
+		{
+
+			if (files.Count > 0)
+			{
+				IFormFile formFile = files[0];
+
+				using (var ms = new MemoryStream())
+				{
+					formFile.CopyTo(ms);
+					byte[] fileBytes = ms.ToArray();
+					string base64String = Convert.ToBase64String(fileBytes);
+
+					entidad.Imagen = base64String;
+				}
+
+
+			}
+
+			entidadHelper = new RuedumHelper();
+			RuedumViewModel car = entidadHelper.GetByID(entidad.RuedaId);
+			car.Imagen = entidad.Imagen;
+
+			entidadHelper.Edit(car);
+
+
+			return RedirectToAction("Details", new { id = car.RuedaId });
+		}
+		#endregion
+
+	}
 }
