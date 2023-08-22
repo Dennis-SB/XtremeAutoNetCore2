@@ -3,7 +3,7 @@
     public class VentumModel
     {
         public int VentaId { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; } = null!;
         public int CarroVendidoId { get; set; }
         public decimal Total { get; set; }
         public int Meses { get; set; }

@@ -101,7 +101,7 @@ namespace BackEnd.Controllers
         {
             Ventum entidad = new Ventum
             {
-                UsuarioId = id
+                VentaId = id
             };
             entidadDAL.Remove(entidad);
         }

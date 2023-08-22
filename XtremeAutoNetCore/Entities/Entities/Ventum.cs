@@ -11,7 +11,7 @@ namespace Entities.Entities
         }
 
         public int VentaId { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; } = null!;
         public int CarroVendidoId { get; set; }
         public decimal Total { get; set; }
         public int Meses { get; set; }
@@ -20,7 +20,7 @@ namespace Entities.Entities
         public decimal SaldoAbonado { get; set; }
 
         public virtual CarroVendido CarroVendido { get; set; } = null!;
-        public virtual Usuario Usuario { get; set; } = null!;
+        public virtual AspNetUser Usuario { get; set; } = null!;
         public virtual ICollection<Transaccion> Transaccions { get; set; }
     }
 }

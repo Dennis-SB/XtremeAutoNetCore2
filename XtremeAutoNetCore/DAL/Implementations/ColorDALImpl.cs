@@ -12,7 +12,7 @@ namespace DAL.Implementations
     public class ColorDALImpl : IColorDAL
     {
         private XtremeAutoNetCore2Context Context;
-        private UnidadDeTrabajo<Color> unidad;
+        private UnidadDeTrabajo<Color>? unidad;
 
         public bool Add(Color entidad)
         {
